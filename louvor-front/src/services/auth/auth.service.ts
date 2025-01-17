@@ -1,6 +1,6 @@
 import { constants } from "../../constants";
 import { EncodeResult } from "../../models/auth/encode-result.model";
-import { Login } from "../../models/auth/login,model";
+import { Login } from "../../models/auth/login.model";
 import { BaseService } from "../base.service";
 
 export class AuthService extends BaseService {
@@ -17,7 +17,11 @@ export class AuthService extends BaseService {
             method: "POST",
             body: JSON.stringify(login)
         }
-        ).then(r => r.json());
+        ).then(async r => {
+            const json = await r.json()
+            localStorage.setItem('auth', json);
+            return json
+        });
         return encodeReslt;
     }
 

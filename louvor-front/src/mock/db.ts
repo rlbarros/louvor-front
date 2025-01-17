@@ -3,7 +3,7 @@ import styles from "./music/styles.json";
 import users from "./auth/users.json";
 import { constants } from "../constants";
 import { EncodeResult } from "../models/auth/encode-result.model";
-import { Login } from "../models/auth/login,model";
+import { Login } from "../models/auth/login.model";
 import { encodeSession } from "./auth/encoding-session";
 
 const { domains } = constants;
@@ -41,6 +41,8 @@ if (import.meta.env.VITE_MOCK_API) {
           encodeResult = await encodeSession();
         }
         return JSON.stringify(encodeResult);
+      }, {
+        timing: constants.timeouts.mock
       });
 
       const musicDomain = domains.music;
