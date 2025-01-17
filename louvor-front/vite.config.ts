@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import mkcert from "vite-plugin-mkcert";
+import path from "path"
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -12,7 +13,12 @@ export default defineConfig({
     }),
   ],
   server: {
-    https: true,
-    port: 4200,
+    port: 4200
   },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+
 });
