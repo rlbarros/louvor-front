@@ -1,19 +1,38 @@
-import { useEffect, useState, version } from "react";
+import { useState, version, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import "./mock/db";
-import { Style } from "./models/style.model";
+import { Style } from "./models/music/style.model";
+import { StyleService } from "./services/music/style.service";
+import { FadeLoader } from "react-spinners";
+import { AuthService } from "./services/auth/auth.service";
+import { Login } from "./models/auth/login,model";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [isPending, setIsPending] = useState(true);
   const [styles, setStyles] = useState<Style[]>([]);
 
   useEffect(() => {
-    fetch("/api/styles")
-      .then((r) => r.json())
-      .then((styles) => setStyles(styles));
-  });
+    const styleService = new StyleService();
+    const authService = new AuthService();
+    const fetchData = async () => {
+      const styles = await styleService.list();
+      if (styles) {
+        setIsPending(false);
+        setStyles(styles);
+      }
+      const loginRequest = {
+        email: "rodrigo.lima.barros@gmail.com",
+        password: "200710",
+      } as Login;
+      const encodeRequest = await authService.login(loginRequest);
+      console.log(encodeRequest);
+    };
+
+    fetchData(); // Mark this as a transition
+  }, []);
 
   return (
     <>
@@ -28,7 +47,9 @@ function App() {
       {styles.map((s) => (
         <div key={s.id}>{s.name}</div>
       ))}
-      <h1>Vite + React</h1> <small> {version}</small>
+      <FadeLoader color="#FFFFFF" loading={isPending} />
+      <h1>Vite + React</h1>
+      <small> {version}</small>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
