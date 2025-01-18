@@ -1,5 +1,6 @@
 import { createServer, Model } from "miragejs";
 import styles from "./music/styles.json";
+import genres from "./music/genres.json";
 import users from "./auth/users.json";
 import { constants } from "../constants";
 import { EncodeResult } from "../models/auth/encode-result.model";
@@ -51,9 +52,16 @@ if (import.meta.env.VITE_MOCK_API) {
 
       const musicDomain = domains.music;
       const musicRoute = `${api}/${musicDomain.name}`;
+
       const stylesRoute = `${musicRoute}/${musicDomain.routes.styles}`;
       this.get(stylesRoute, () => {
         return styles;
+      }, {
+        timing: constants.timeouts.mock
+      });
+      const genresRoute = `${musicRoute}/${musicDomain.routes.genres}`;
+      this.get(genresRoute, () => {
+        return genres;
       }, {
         timing: constants.timeouts.mock
       });

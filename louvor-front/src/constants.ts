@@ -10,13 +10,15 @@ export const constants = {
         music: {
             name: 'music',
             routes: {
-                styles: 'styles'
+                styles: 'styles',
+                genres: 'genres'
             }
         }
     },
     routes: {
         login: '/login',
         styles: '/styles',
+        genres: '/genres',
         home: '/'
     },
     timeouts: {

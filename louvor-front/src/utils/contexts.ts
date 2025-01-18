@@ -6,3 +6,4 @@ const currentUser = authService.user();
 const AuthContext = createContext(currentUser);
 
 export default AuthContext;
+
