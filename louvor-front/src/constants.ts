@@ -1,8 +1,5 @@
 export const constants = {
     api: 'api',
-    timeouts: {
-        mock: 1500
-    },
     domains: {
         auth: {
             name: 'auth',
@@ -16,5 +13,13 @@ export const constants = {
                 styles: 'styles'
             }
         }
-    }
+    },
+    routes: {
+        login: '/login',
+        styles: '/styles',
+        home: '/'
+    },
+    timeouts: {
+        mock: 1500
+    },
 }

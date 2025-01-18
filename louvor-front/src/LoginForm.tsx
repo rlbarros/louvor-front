@@ -15,10 +15,11 @@ import { useForm } from "react-hook-form";
 import { Login } from "./models/auth/login.model";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-//import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FadeLoader } from "react-spinners";
 import { AuthService } from "./services/auth/auth.service";
 import { ZodInput } from "./components/form/zod-input";
+import { constants } from "./constants";
 
 export function LoginForm({
   className,
@@ -40,12 +41,14 @@ export function LoginForm({
     resolver: zodResolver(loginSchema),
   });
 
-  //const [isPending, setIsPending] = useState(false);
   const authService = new AuthService();
+  const navigate = useNavigate();
 
   async function fetchData(data: Login) {
     const encodeRequest = await authService.login(data);
-    console.log(encodeRequest);
+    if (encodeRequest && encodeRequest.success) {
+      navigate(constants.routes.home);
+    }
     //setIsPending(false);
   }
 

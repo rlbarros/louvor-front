@@ -1,17 +1,20 @@
-import { useState, version, useEffect } from "react";
+import { useState, version, useEffect, useContext } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./mock/db";
 import { Style } from "./models/music/style.model";
 import { StyleService } from "./services/music/style.service";
 import { FadeLoader } from "react-spinners";
+import AuthContext from "./utils/constants";
 
 export function Styles() {
   const [count, setCount] = useState(0);
   const [isPending, setIsPending] = useState(true);
   const [styles, setStyles] = useState<Style[]>([]);
+  const currentUser = useContext(AuthContext);
 
   useEffect(() => {
+    console.log(currentUser);
     const styleService = new StyleService();
     const fetchData = async () => {
       const styles = await styleService.list();
