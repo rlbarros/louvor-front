@@ -103,7 +103,7 @@ export function LoginForm({
                       width={3}
                       height={10}
                       margin={-10}
-                      color="#000000"
+                      color="#FFFFFF"
                       className="ml-8 mt-3"
                     />
                   ) : (

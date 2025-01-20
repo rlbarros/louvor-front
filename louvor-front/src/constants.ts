@@ -29,6 +29,17 @@ export const constants = {
         login: '/login',
         home: '/'
     },
+    menus: {
+        schedule: 'Agenda',
+        musics: 'Musicas',
+        interpreters: "Intépretes",
+        configuration: 'Configuração',
+        services: 'Cultos',
+        genres: 'Gêneros',
+        styles: 'Estilos',
+        serviceTypes: 'Tipos de Cultos'
+
+    },
     timeouts: {
         mock: 1500
     },

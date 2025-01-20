@@ -17,14 +17,42 @@ import { constants } from "@/constants";
 import { Genres } from "@/genres";
 import { Styles } from "@/styles";
 import ProtectedRoutes from "@/utils/protected.routes";
+import slash from "@/utils/slash";
 
 import { Route, Routes } from "react-router-dom";
 
-function slash(route: string) {
-  return `/${route}`;
-}
-
 export default function Page() {
+  const musicsPath = slash(constants.domains.music.routes.musics);
+  const interpretersPath = slash(constants.domains.music.routes.interpreters);
+
+  const genresPath = slash(constants.domains.music.routes.genres);
+  const stylesPath = slash(constants.domains.music.routes.styles);
+  const serviceTypePath = slash(constants.domains.service.routes.servicesTypes);
+
+  const location = window.location;
+  const pathName = location.pathname;
+  let breadcrumbLink = constants.menus.schedule;
+  let breadcrumbItem = constants.menus.services;
+
+  if (pathName.endsWith(musicsPath)) {
+    breadcrumbLink = constants.menus.musics;
+    breadcrumbItem = constants.menus.musics;
+  } else if (pathName.endsWith(interpretersPath)) {
+    breadcrumbLink = constants.menus.musics;
+    breadcrumbItem = constants.menus.interpreters;
+  }
+
+  if (pathName.endsWith(genresPath)) {
+    breadcrumbLink = constants.menus.configuration;
+    breadcrumbItem = constants.menus.genres;
+  } else if (pathName.endsWith(stylesPath)) {
+    breadcrumbLink = constants.menus.configuration;
+    breadcrumbItem = constants.menus.styles;
+  } else if (pathName.endsWith(serviceTypePath)) {
+    breadcrumbLink = constants.menus.configuration;
+    breadcrumbItem = constants.menus.serviceTypes;
+  }
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -36,13 +64,13 @@ export default function Page() {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
+                  <BreadcrumbLink href={pathName}>
+                    {breadcrumbLink}
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                  <BreadcrumbPage>{breadcrumbItem}</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -52,14 +80,8 @@ export default function Page() {
           <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
             <Routes>
               <Route element={<ProtectedRoutes />}>
-                <Route
-                  element={<Genres />}
-                  path={slash(constants.domains.music.routes.genres)}
-                />
-                <Route
-                  element={<Styles />}
-                  path={slash(constants.domains.music.routes.genres)}
-                />
+                <Route element={<Genres />} path={genresPath} />
+                <Route element={<Styles />} path={stylesPath} />
               </Route>
             </Routes>
           </div>

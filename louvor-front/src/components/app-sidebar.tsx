@@ -2,7 +2,6 @@ import * as React from "react";
 import {
   AudioWaveform,
   CalendarDays,
-  Bot,
   Command,
   Frame,
   GalleryVerticalEnd,
@@ -23,6 +22,8 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import AuthContext from "@/utils/contexts";
+import slash from "@/utils/slash";
+import { constants } from "@/constants";
 
 // This is sample data.
 const data = {
@@ -45,60 +46,48 @@ const data = {
   ],
   navMain: [
     {
-      title: "Agenda",
-      url: "/",
+      title: constants.menus.schedule,
+      url: slash(""),
       icon: CalendarDays,
       isActive: true,
       items: [
         {
-          title: "Styles",
-          url: "/styles",
-        },
-        {
-          title: "Genres",
-          url: "/genres",
-        },
-        {
-          title: "Settings",
-          url: "#",
+          title: constants.menus.services,
+          url: slash(""),
         },
       ],
     },
     {
-      title: "Músicas",
-      url: "#",
-      icon: Bot,
+      title: constants.menus.musics,
+      url: slash(constants.domains.music.routes.musics),
+      icon: AudioWaveform,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: constants.menus.musics,
+          url: slash(constants.domains.music.routes.musics),
         },
         {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
+          title: constants.menus.interpreters,
+          url: slash(constants.domains.music.routes.interpreters),
         },
       ],
     },
     {
-      title: "Configurações",
+      title: constants.menus.configuration,
       url: "#",
       icon: Settings2,
       items: [
         {
-          title: "Styles",
-          url: "/styles",
+          title: constants.menus.styles,
+          url: slash(constants.domains.music.routes.styles),
         },
         {
-          title: "Genres",
-          url: "/genres",
+          title: constants.menus.genres,
+          url: slash(constants.domains.music.routes.genres),
         },
         {
-          title: "Settings",
-          url: "#",
+          title: constants.menus.serviceTypes,
+          url: slash(constants.domains.service.routes.servicesTypes),
         },
       ],
     },
