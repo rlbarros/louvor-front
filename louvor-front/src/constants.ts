@@ -10,15 +10,23 @@ export const constants = {
         music: {
             name: 'music',
             routes: {
+                genres: 'genres',
+                interpreters: 'interpreters',
+                musics: 'musics',
                 styles: 'styles',
-                genres: 'genres'
+            }
+        },
+        service: {
+            name: 'service',
+            routes: {
+                servicesMusics: 'servicesMusics',
+                servicesTypes: 'servicesTypes',
+                services: 'services',
             }
         }
     },
     routes: {
         login: '/login',
-        styles: '/styles',
-        genres: '/genres',
         home: '/'
     },
     timeouts: {

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {
   AudioWaveform,
-  BookOpen,
+  CalendarDays,
   Bot,
   Command,
   Frame,
@@ -9,7 +9,6 @@ import {
   Map,
   PieChart,
   Settings2,
-  SquareTerminal,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -23,36 +22,32 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import AuthContext from "@/utils/contexts";
 
 // This is sample data.
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   teams: [
     {
-      name: "Acme Inc",
+      name: "Loteamento Brasil",
       logo: GalleryVerticalEnd,
-      plan: "Enterprise",
+      plan: "Igreja",
     },
     {
-      name: "Acme Corp.",
+      name: "Santos Reis",
       logo: AudioWaveform,
-      plan: "Startup",
+      plan: "Igreja",
     },
     {
-      name: "Evil Corp.",
+      name: "Rosa dos Ventos",
       logo: Command,
-      plan: "Free",
+      plan: "Sede Estadual",
     },
   ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
+      title: "Agenda",
+      url: "/",
+      icon: CalendarDays,
       isActive: true,
       items: [
         {
@@ -70,7 +65,7 @@ const data = {
       ],
     },
     {
-      title: "Models",
+      title: "Músicas",
       url: "#",
       icon: Bot,
       items: [
@@ -89,47 +84,20 @@ const data = {
       ],
     },
     {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
+      title: "Configurações",
       url: "#",
       icon: Settings2,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: "Styles",
+          url: "/styles",
         },
         {
-          title: "Team",
-          url: "#",
+          title: "Genres",
+          url: "/genres",
         },
         {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
+          title: "Settings",
           url: "#",
         },
       ],
@@ -155,6 +123,7 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const currentUser = React.useContext(AuthContext);
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -165,7 +134,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={currentUser} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

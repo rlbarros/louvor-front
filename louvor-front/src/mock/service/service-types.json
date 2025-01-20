@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Doutrina",
+    "music_count": 3
+  },
+  {
+    "id": 2,
+    "name": "Adoração",
+    "music_count": 5
+  },
+  {
+    "id": 3,
+    "name": "Santa Ceia",
+    "music_count": 4
+  }
+]

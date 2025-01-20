@@ -6,5 +6,41 @@
   {
     "id": 2,
     "name": "Worship"
+  },
+  {
+    "id": 3,
+    "name": "Corinho de Fogo"
+  },
+  {
+    "id": 4,
+    "name": "Hino"
+  },
+  {
+    "id": 5,
+    "name": "Pop"
+  },
+  {
+    "id": 6,
+    "name": "Infantil"
+  },
+  {
+    "id": 7,
+    "name": "Gospel"
+  },
+  {
+    "id": 8,
+    "name": "Reggae"
+  },
+  {
+    "id": 9,
+    "name": "Pop Rock"
+  },
+  {
+    "id": 10,
+    "name": "Marchinha"
+  },
+  {
+    "id": 11,
+    "name": "Clássicos"
   }
 ]

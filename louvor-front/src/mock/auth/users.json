@@ -1,8 +1,16 @@
 [
-    {
-        "id": 1,
-        "name": "Rodrigo",
-        "email": "rodrigo.lima.barros@gmail.com",
-        "password": "200710"
-    }
+  {
+    "id": 1,
+    "name": "Rodrigo",
+    "email": "rodrigo.lima.barros@gmail.com",
+    "password": "",
+    "avatar": "/avatars/shadcn.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Teste",
+    "email": "teste@teste.com",
+    "password": "",
+    "avatar": "/avatars/shadcn.jpg"
+  }
 ]

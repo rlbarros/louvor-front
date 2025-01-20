@@ -14,11 +14,15 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { constants } from "@/constants";
-import { Genres } from "@/Genres";
-import { Styles } from "@/Styles";
+import { Genres } from "@/genres";
+import { Styles } from "@/styles";
 import ProtectedRoutes from "@/utils/protected.routes";
 
 import { Route, Routes } from "react-router-dom";
+
+function slash(route: string) {
+  return `/${route}`;
+}
 
 export default function Page() {
   return (
@@ -48,8 +52,14 @@ export default function Page() {
           <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
             <Routes>
               <Route element={<ProtectedRoutes />}>
-                <Route element={<Genres />} path={constants.routes.genres} />
-                <Route element={<Styles />} path={constants.routes.styles} />
+                <Route
+                  element={<Genres />}
+                  path={slash(constants.domains.music.routes.genres)}
+                />
+                <Route
+                  element={<Styles />}
+                  path={slash(constants.domains.music.routes.genres)}
+                />
               </Route>
             </Routes>
           </div>

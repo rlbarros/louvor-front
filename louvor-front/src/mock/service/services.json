@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "day": "2025-01-02T03:00:00.000Z",
+    "service_type_id": 1,
+    "service_type": "Doutrina"
+  },
+  {
+    "id": 2,
+    "day": "2025-01-05T03:00:00.000Z",
+    "service_type_id": 2,
+    "service_type": "Adoração"
+  },
+  {
+    "id": 3,
+    "day": "2025-01-09T03:00:00.000Z",
+    "service_type_id": 1,
+    "service_type": "Doutrina"
+  },
+  {
+    "id": 4,
+    "day": "2025-01-12T03:00:00.000Z",
+    "service_type_id": 2,
+    "service_type": "Adoração"
+  },
+  {
+    "id": 5,
+    "day": "2025-01-16T03:00:00.000Z",
+    "service_type_id": 3,
+    "service_type": "Santa Ceia"
+  },
+  {
+    "id": 6,
+    "day": "2025-01-19T03:00:00.000Z",
+    "service_type_id": 2,
+    "service_type": "Adoração"
+  }
+]
