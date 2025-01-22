@@ -1,8 +1,8 @@
 import { constants } from "../../constants";
 import { Genre } from "../../models/music/genre.model";
-import { ListService } from "../list.service";
+import { CrudService } from "../crud.service";
 
-export class GenreService extends ListService<Genre> {
+export class GenreService extends CrudService<Genre, Genre> {
   override domain() {
     return constants.domains.music.name;
   }

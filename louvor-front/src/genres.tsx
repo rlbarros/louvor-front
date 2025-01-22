@@ -1,46 +1,28 @@
-import { useState, version, useEffect, useContext } from "react";
-import "./mock/db";
-import { Genre } from "./models/music/genre.model";
 import { GenreService } from "./services/music/genre.service";
-import { FadeLoader } from "react-spinners";
-import AuthContext from "./utils/contexts";
+import { z } from "zod";
+import { labelDefinitionDefault } from "./models/app/label-definition.model";
+import { genreDefault } from "./models/music/genre.model";
+import Crud from "./components/crud";
+import { constants } from "./constants";
 
 export function Genres() {
-  const [count, setCount] = useState(0);
-  const [isPending, setIsPending] = useState(true);
-  const [genres, setGenres] = useState<Genre[]>([]);
+  const genreService = new GenreService();
 
-  const currentUser = useContext(AuthContext);
-  useEffect(() => {
-    console.log(currentUser);
-    const genreService = new GenreService();
-    const fetchData = async () => {
-      const genres = await genreService.list();
-      if (genres) {
-        setIsPending(false);
-        setGenres(genres);
-      }
-    };
+  const schema = z.object({
+    name: z.string().min(1, { message: "o nome deve ser preenchdo" }),
+    password: z.string().min(1, { message: "a senha deve ser preenchida" }),
+  });
 
-    fetchData(); // Mark this as a transition
-  }, [currentUser]);
+  const propertyMap = new Map<string, string>([["name", "nome"]]);
 
   return (
-    <>
-      {genres.map((s) => (
-        <div key={s.id}>{s.name}</div>
-      ))}
-      <FadeLoader color="#FFFFFF" loading={isPending} />
-      <h1>Vite + React</h1>
-      <small> {version}</small>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Crud
+      crudService={genreService}
+      schema={schema}
+      labelDefintion={labelDefinitionDefault}
+      record={genreDefault}
+      propertyMap={propertyMap}
+      title={constants.menus.genres}
+    />
   );
 }

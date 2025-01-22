@@ -1,4 +1,10 @@
+import { Identifiable } from "../app/identifiable.model";
+
 export type Genre = {
-  id: number;
   name: string;
-};
+} & Identifiable;
+
+export const genreDefault = {
+  id: 0,
+  name: "",
+} as Genre;

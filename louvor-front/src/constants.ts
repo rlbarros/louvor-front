@@ -1,4 +1,5 @@
 export const constants = {
+    _id: '_id',
     api: 'api',
     domains: {
         auth: {

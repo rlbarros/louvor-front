@@ -1,7 +1,7 @@
 import { AuthService } from "./auth/auth.service";
 import { BaseService } from "./base.service";
 
-export abstract class ListService<T> extends BaseService {
+export abstract class ListService<V> extends BaseService {
   abstract route(): string;
 
   override apiPath(): string {
@@ -28,7 +28,7 @@ export abstract class ListService<T> extends BaseService {
     return options;
   }
 
-  async list(): Promise<T[]> {
+  async list(): Promise<V[]> {
     const options = this.options("GET");
     return await fetch(this.apiPath(), options).then((r) => r.json());
   }

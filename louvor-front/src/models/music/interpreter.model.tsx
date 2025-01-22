@@ -1,4 +1,5 @@
+import { Identifiable } from "../app/identifiable.model";
+
 export type Interpreter = {
-  id: number;
   name: string;
-};
+} & Identifiable;

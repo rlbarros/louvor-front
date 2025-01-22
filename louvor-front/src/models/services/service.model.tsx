@@ -1,5 +1,6 @@
+import { Identifiable } from "../app/identifiable.model";
+
 export type Service = {
-  id: number;
   day: Date;
   service_type_id: number;
-};
+} & Identifiable;

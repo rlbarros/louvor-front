@@ -1,5 +1,6 @@
+import { Identifiable } from "../app/identifiable.model";
+
 export type ServiceType = {
-  id: number;
   name: string;
   music_count: number;
-};
+} & Identifiable;
