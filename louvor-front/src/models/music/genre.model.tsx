@@ -4,7 +4,7 @@ export type Genre = {
   name: string;
 } & Identifiable;
 
-export const genreDefault = {
+export const defaultGenre = {
   id: 0,
   name: "",
 } as Genre;

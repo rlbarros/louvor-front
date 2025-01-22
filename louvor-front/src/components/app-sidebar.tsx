@@ -86,7 +86,7 @@ const data = {
           url: slash(constants.domains.music.routes.genres),
         },
         {
-          title: constants.menus.serviceTypes,
+          title: constants.menus.servicesTypes,
           url: slash(constants.domains.service.routes.servicesTypes),
         },
       ],

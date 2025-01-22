@@ -1,6 +1,5 @@
 import { Table } from "@tanstack/react-table";
 
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -8,7 +7,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Settings2, SquareChevronDown } from "lucide-react";
+import { Settings2 } from "lucide-react";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 
 interface DataTableViewOptionsProps<TData> {
@@ -22,17 +21,12 @@ export function DataTableViewOptions<TData>({
 }: DataTableViewOptionsProps<TData>) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
-        <SquareChevronDown>
-          <Button
-            variant="outline"
-            size="sm"
-            className="ml-auto hidden h-8 lg:flex"
-          >
-            <Settings2 className="mr-2 h-4 w-4" />
-            View
-          </Button>
-        </SquareChevronDown>
+      <DropdownMenuTrigger
+        className="hidden w-24 h-8 lg:flex"
+        style={{ padding: ".25rem 1rem" }}
+      >
+        <Settings2 className="mr-2 h-6 w-6" />
+        <span className="text-sm">Visão</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[150px]">
         <DropdownMenuLabel>Alternar Colunas</DropdownMenuLabel>

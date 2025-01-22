@@ -14,8 +14,11 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { constants } from "@/constants";
-import { Genres } from "@/genres";
-import { Styles } from "@/styles";
+import { Genres } from "@/pages/configuration/genres";
+import { ServiceTypes } from "@/pages/configuration/service-types";
+import { Styles } from "@/pages/configuration/styles";
+import { Interpreters } from "@/pages/music/interpreters";
+import { Musics } from "@/pages/music/musics";
 import ProtectedRoutes from "@/utils/protected.routes";
 import slash from "@/utils/slash";
 
@@ -50,7 +53,7 @@ export default function Page() {
     breadcrumbItem = constants.menus.styles;
   } else if (pathName.endsWith(serviceTypePath)) {
     breadcrumbLink = constants.menus.configuration;
-    breadcrumbItem = constants.menus.serviceTypes;
+    breadcrumbItem = constants.menus.servicesTypes;
   }
 
   return (
@@ -80,8 +83,12 @@ export default function Page() {
           <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
             <Routes>
               <Route element={<ProtectedRoutes />}>
+                <Route element={<Musics />} path={musicsPath} />
+                <Route element={<Interpreters />} path={interpretersPath} />
+
                 <Route element={<Genres />} path={genresPath} />
                 <Route element={<Styles />} path={stylesPath} />
+                <Route element={<ServiceTypes />} path={serviceTypePath} />
               </Route>
             </Routes>
           </div>

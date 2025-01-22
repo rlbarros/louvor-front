@@ -47,10 +47,10 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem onClick={editRecord}>Edit</DropdownMenuItem>
+        <DropdownMenuItem onClick={editRecord}>Editar</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={deleteRecord}>
-          Apagar
+          Deletar
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>

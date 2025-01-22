@@ -38,7 +38,7 @@ export const constants = {
         services: 'Cultos',
         genres: 'Gêneros',
         styles: 'Estilos',
-        serviceTypes: 'Tipos de Cultos'
+        servicesTypes: 'Tipos de Cultos'
 
     },
     timeouts: {
