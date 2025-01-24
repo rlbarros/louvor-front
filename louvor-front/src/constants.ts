@@ -26,6 +26,7 @@ export const constants = {
             }
         }
     },
+    id: 'id',
     routes: {
         login: '/login',
         home: '/'
@@ -39,7 +40,6 @@ export const constants = {
         genres: 'Gêneros',
         styles: 'Estilos',
         servicesTypes: 'Tipos de Cultos'
-
     },
     timeouts: {
         mock: 1500

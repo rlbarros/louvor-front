@@ -15,6 +15,11 @@ export default function mockService(server: Server) {
     servicesMusicRoute,
     serviceDomain.routes.servicesMusics
   );
-  mockCrudRoute(server, servicesTypesRoute, serviceDomain.routes.servicesTypes);
-  mockCrudRoute(server, servicesRoute, serviceDomain.routes.services);
+  mockCrudRoute(
+    server,
+    servicesTypesRoute,
+    serviceDomain.routes.servicesTypes,
+    0
+  );
+  mockCrudRoute(server, servicesRoute, serviceDomain.routes.services, 100);
 }

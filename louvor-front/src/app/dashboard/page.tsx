@@ -17,6 +17,7 @@ import { constants } from "@/constants";
 import { Genres } from "@/pages/configuration/genres";
 import { ServiceTypes } from "@/pages/configuration/service-types";
 import { Styles } from "@/pages/configuration/styles";
+import Home from "@/pages/home";
 import { Interpreters } from "@/pages/music/interpreters";
 import { Musics } from "@/pages/music/musics";
 import ProtectedRoutes from "@/utils/protected.routes";
@@ -25,6 +26,8 @@ import slash from "@/utils/slash";
 import { Route, Routes } from "react-router-dom";
 
 export default function Page() {
+  const homePath = slash("");
+
   const musicsPath = slash(constants.domains.music.routes.musics);
   const interpretersPath = slash(constants.domains.music.routes.interpreters);
 
@@ -83,6 +86,8 @@ export default function Page() {
           <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
             <Routes>
               <Route element={<ProtectedRoutes />}>
+                <Route element={<Home />} path={homePath} />
+
                 <Route element={<Musics />} path={musicsPath} />
                 <Route element={<Interpreters />} path={interpretersPath} />
 

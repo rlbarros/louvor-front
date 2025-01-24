@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { Login } from "./models/auth/login.model";
 import { z } from "zod";
@@ -72,24 +71,18 @@ export function LoginForm({
             <form onSubmit={handleSubmit(handleLogin)}>
               <div className="flex flex-col gap-6">
                 <div className="grid gap-2">
-                  <div className="flex items-center">
-                    <Label htmlFor="email">Email</Label>
-                  </div>
                   <ZodInput
-                    label="Email"
+                    label="e-mail"
                     type="text"
                     name="email"
-                    placeholder="Enter your e-mail"
+                    placeholder="informe o seu email"
                     errors={errors}
                     register={register}
                   />
                 </div>
                 <div className="grid gap-2">
-                  <div className="flex items-center">
-                    <Label htmlFor="password">Password</Label>
-                  </div>
                   <ZodInput
-                    label="password"
+                    label="senha"
                     type="password"
                     name="password"
                     errors={errors}

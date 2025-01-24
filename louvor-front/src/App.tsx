@@ -9,6 +9,7 @@ import AuthContext from "./utils/contexts";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import Page from "./app/dashboard/page";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
   const authService = new AuthService();
@@ -25,6 +26,7 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+        <Toaster />
       </ThemeProvider>
     </AuthContext.Provider>
   );

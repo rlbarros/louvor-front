@@ -1,10 +1,18 @@
 import { ServiceMusic } from "./service-music.model";
-import { ServiceView } from "./service.view";
-import { MusicView } from "../music/music.view";
 
 export type ServiceMusicView = {
-  service_day: Date;
   music: string;
-} & ServiceMusic &
-  ServiceView &
-  MusicView;
+  genre: string;
+  style: string;
+  interpreter: string;
+} & ServiceMusic;
+
+export const defaultServiceMusicView = {
+  id: 0,
+  service_id: 0,
+  music_id: 0,
+  music: "",
+  genre: "",
+  interpreter: "",
+  style: "",
+} as ServiceMusicView;

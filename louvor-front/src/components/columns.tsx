@@ -81,8 +81,21 @@ export default function getColumns<
           <DataTableColumnHeader column={column} title={title} />
         ),
         cell: ({ row }) => {
-          const labelValue = row.getValue(labelDefinition?.labelColumnValue);
-          const labelLabel = row.getValue(labelDefinition?.labelColumnValue);
+          let labelValue: string | number = 0;
+          let labelLabel: string | number = "";
+          const record = row.original;
+          if (record) {
+            if (labelDefinition?.labelColumnValue in record) {
+              labelValue = (record as Record<string, number | string>)[
+                labelDefinition?.labelColumnValue
+              ];
+            }
+            if (labelDefinition?.labelColumnLabel in record) {
+              labelLabel = (record as Record<string, number | string>)[
+                labelDefinition?.labelColumnLabel
+              ];
+            }
+          }
 
           const label = {
             value: labelValue,

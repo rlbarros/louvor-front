@@ -28,8 +28,23 @@ export abstract class ListService<V> extends BaseService {
     return options;
   }
 
-  async list(): Promise<V[]> {
+  async list(queryParams: Record<string, string> = {}): Promise<V[]> {
     const options = this.options("GET");
-    return await fetch(this.apiPath(), options).then((r) => r.json());
+    let path = this.apiPath();
+    if (queryParams) {
+      let firstIteration = true;
+
+      for (const property in queryParams) {
+        if (firstIteration) {
+          path += "?";
+          firstIteration = false;
+        } else {
+          path += "&";
+        }
+        path += `${property}=${queryParams[property]}`;
+      }
+    }
+
+    return await fetch(path, options).then((r) => r.json());
   }
 }

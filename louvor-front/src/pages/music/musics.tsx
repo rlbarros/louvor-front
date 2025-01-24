@@ -1,10 +1,10 @@
 import { z } from "zod";
-import { labelDefinitionDefault } from "../../models/app/label-definition.model";
 
 import Crud from "../../components/crud";
 import { constants } from "../../constants";
 import { MusicService } from "@/services/music/music.service";
 import { defaultMusicView } from "@/models/music/music.view";
+import { LabelDefinition } from "@/models/app/label-definition.model";
 
 export function Musics() {
   const musicService = new MusicService();
@@ -25,11 +25,17 @@ export function Musics() {
     ["name", "nome"],
   ]);
 
+  const labelDefinition = {
+    labelContainer: "name",
+    labelColumnLabel: "style",
+    labelColumnValue: "style_id",
+  } as LabelDefinition;
+
   return (
     <Crud
       crudService={musicService}
       schema={schema}
-      labelDefintion={labelDefinitionDefault}
+      labelDefintion={labelDefinition}
       record={defaultMusicView}
       propertyMap={propertyMap}
       title={constants.menus.musics}

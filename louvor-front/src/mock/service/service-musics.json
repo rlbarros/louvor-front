@@ -1,242 +1,194 @@
 [
   {
     "service_id": 1,
-    "service_day": "2025-01-02T03:00:00.000Z",
-    "service_type": "Doutrina",
     "music_id": 1,
     "music": "Vencendo Vem Jesus (525)",
     "interpreter": "Missão Harpa",
-    "genre": "Animada",
-    "style": "Rock"
+    "style": "Animada",
+    "genre": "Rock"
   },
   {
     "service_id": 1,
-    "service_day": "2025-01-02T03:00:00.000Z",
-    "service_type": "Doutrina",
     "music_id": 2,
     "music": "Bondade de Deus",
     "interpreter": "Isaías Saad",
-    "genre": "Adoração",
-    "style": "Worship"
+    "style": "Adoração",
+    "genre": "Worship"
   },
   {
     "service_id": 1,
-    "service_day": "2025-01-02T03:00:00.000Z",
-    "service_type": "Doutrina",
     "music_id": 3,
     "music": "Todas as Coisas",
     "interpreter": "Fernandinho",
-    "genre": "Adoração",
-    "style": "Worship"
+    "style": "Adoração",
+    "genre": "Worship"
   },
   {
     "service_id": 2,
-    "service_day": "2025-01-05T03:00:00.000Z",
-    "service_type": "Adoração",
     "music_id": 4,
     "music": "Fico Feliz",
     "interpreter": "Aline Barros",
-    "genre": "Animada",
-    "style": "Pop"
+    "style": "Animada",
+    "genre": "Pop"
   },
   {
     "service_id": 2,
-    "service_day": "2025-01-05T03:00:00.000Z",
-    "service_type": "Adoração",
     "music_id": 5,
     "music": "Aquele que está Feliz",
     "interpreter": "Corinhos",
-    "genre": "Animada",
-    "style": "Pop"
+    "style": "Animada",
+    "genre": "Pop"
   },
   {
     "service_id": 2,
-    "service_day": "2025-01-05T03:00:00.000Z",
-    "service_type": "Adoração",
     "music_id": 6,
     "music": "Canção do Céu",
     "interpreter": "Gabriela Rocha",
-    "genre": "Adoração",
-    "style": "Worship"
+    "style": "Adoração",
+    "genre": "Worship"
   },
   {
     "service_id": 2,
-    "service_day": "2025-01-05T03:00:00.000Z",
-    "service_type": "Adoração",
     "music_id": 7,
     "music": "Varão de Branco",
     "interpreter": "Alice Maciel",
-    "genre": "Animada",
-    "style": "Corinho de Fogo"
+    "style": "Animada",
+    "genre": "Corinho de Fogo"
   },
   {
     "service_id": 2,
-    "service_day": "2025-01-05T03:00:00.000Z",
-    "service_type": "Adoração",
     "music_id": 8,
     "music": "Não perdi o Controle",
     "interpreter": "Samuel Messias",
-    "genre": "Adoração",
-    "style": "Gospel"
+    "style": "Adoração",
+    "genre": "Gospel"
   },
   {
     "service_id": 2,
-    "service_day": "2025-01-05T03:00:00.000Z",
-    "service_type": "Adoração",
     "music_id": 9,
     "music": "O Cântico de Moisés",
     "interpreter": "Giovani Santos",
-    "genre": "Animada",
-    "style": "Corinho de Fogo"
+    "style": "Animada",
+    "genre": "Corinho de Fogo"
   },
   {
     "service_id": 3,
-    "service_day": "2025-01-09T03:00:00.000Z",
-    "service_type": "Doutrina",
     "music_id": 10,
     "music": "A Boa Parte",
     "interpreter": "FHOP",
-    "genre": "Adoração",
-    "style": "Worship"
+    "style": "Adoração",
+    "genre": "Worship"
   },
   {
     "service_id": 3,
-    "service_day": "2025-01-09T03:00:00.000Z",
-    "service_type": "Doutrina",
     "music_id": 11,
     "music": "Liberta-me de Mim",
     "interpreter": "Luma Elpídio",
-    "genre": "Adoração",
-    "style": "Gospel"
+    "style": "Adoração",
+    "genre": "Gospel"
   },
   {
     "service_id": 4,
-    "service_day": "2025-01-12T03:00:00.000Z",
-    "service_type": "Adoração",
     "music_id": 12,
     "music": "Te Agradeço",
     "interpreter": "service_daynte do Trono",
-    "genre": "Animada",
-    "style": "Pop"
+    "style": "Animada",
+    "genre": "Pop"
   },
   {
     "service_id": 4,
-    "service_day": "2025-01-12T03:00:00.000Z",
-    "service_type": "Adoração",
     "music_id": 14,
     "music": "Eis que estou a porta",
     "interpreter": "Fernandinho",
-    "genre": "Animada",
-    "style": "Pop Rock"
+    "style": "Animada",
+    "genre": "Pop Rock"
   },
   {
     "service_id": 4,
-    "service_day": "2025-01-12T03:00:00.000Z",
-    "service_type": "Adoração",
     "music_id": 15,
     "music": "Lugar Secreto",
     "interpreter": "Gabriela Rocha",
-    "genre": "Adoração",
-    "style": "Worship"
+    "style": "Adoração",
+    "genre": "Worship"
   },
   {
     "service_id": 4,
-    "service_day": "2025-01-12T03:00:00.000Z",
-    "service_type": "Adoração",
     "music_id": 16,
     "music": "Sempre foi Deus",
     "interpreter": "Kemilly Santos",
-    "genre": "Adoração",
-    "style": "Gospel"
+    "style": "Adoração",
+    "genre": "Gospel"
   },
   {
     "service_id": 4,
-    "service_day": "2025-01-12T03:00:00.000Z",
-    "service_type": "Adoração",
     "music_id": 17,
     "music": "Aos Pés da Cruz",
     "interpreter": "Kleber Lucas",
-    "genre": "Adoração",
-    "style": "Gospel"
+    "style": "Adoração",
+    "genre": "Gospel"
   },
   {
     "service_id": 5,
-    "service_day": "2025-01-16T03:00:00.000Z",
-    "service_type": "Santa Ceia",
     "music_id": 18,
     "music": "João 20 -+ Aqui Está",
     "interpreter": "Luigi Natalino",
-    "genre": "Adoração",
-    "style": "Worship"
+    "style": "Adoração",
+    "genre": "Worship"
   },
   {
     "service_id": 5,
-    "service_day": "2025-01-16T03:00:00.000Z",
-    "service_type": "Santa Ceia",
     "music_id": 19,
     "music": "Pra Sempre",
     "interpreter": "Fernandinho",
-    "genre": "Adoração",
-    "style": "Worship"
+    "style": "Adoração",
+    "genre": "Worship"
   },
   {
     "service_id": 5,
-    "service_day": "2025-01-16T03:00:00.000Z",
-    "service_type": "Santa Ceia",
     "music_id": 20,
     "music": "Imagem de Deus",
     "interpreter": "Voz da Verdade",
-    "genre": "Adoração",
-    "style": "Gospel"
+    "style": "Adoração",
+    "genre": "Gospel"
   },
   {
     "service_id": 6,
-    "service_day": "2025-01-19T03:00:00.000Z",
-    "service_type": "Adoração",
     "music_id": 21,
     "music": "Senhor dos Exércitos",
     "interpreter": "Isaías Saad",
-    "genre": "Animada",
-    "style": "Rock"
+    "style": "Animada",
+    "genre": "Rock"
   },
   {
     "service_id": 6,
-    "service_day": "2025-01-19T03:00:00.000Z",
-    "service_type": "Adoração",
     "music_id": 22,
     "music": "Os Guerreiros se Preparam (212)",
     "interpreter": "Harpa Cristã",
-    "genre": "Animada",
-    "style": "Marchinha"
+    "style": "Animada",
+    "genre": "Marchinha"
   },
   {
     "service_id": 6,
-    "service_day": "2025-01-19T03:00:00.000Z",
-    "service_type": "Adoração",
     "music_id": 23,
     "music": "Os que Confiam",
     "interpreter": "Fernandinho",
-    "genre": "Animada",
-    "style": "Rock"
+    "style": "Animada",
+    "genre": "Rock"
   },
   {
     "service_id": 6,
-    "service_day": "2025-01-19T03:00:00.000Z",
-    "service_type": "Adoração",
     "music_id": 24,
     "music": "Oferta Agradável a TI",
     "interpreter": "Cássiane",
-    "genre": "Adoração",
-    "style": "Gospel"
+    "style": "Adoração",
+    "genre": "Gospel"
   },
   {
     "service_id": 6,
-    "service_day": "2025-01-19T03:00:00.000Z",
-    "service_type": "Adoração",
     "music_id": 25,
     "music": "Eu Louvarei ao Senhor ",
     "interpreter": "Chagas Sobrinho ",
-    "genre": "Adoração",
-    "style": "Clássicos "
+    "style": "Adoração",
+    "genre": "Clássicos "
   }
 ]
