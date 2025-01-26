@@ -39,11 +39,18 @@ export default function Crud<T extends Identifiable, V extends Identifiable>({
     fetchData();
   }, [crudService]);
 
+  function notifyDelete(object: T) {
+    console.log(object);
+  }
+
   const columns = getColumns<T, V>(
     labelDefintion,
     crudService,
     record,
-    propertyMap
+    propertyMap,
+    false,
+    true,
+    notifyDelete
   );
 
   return (

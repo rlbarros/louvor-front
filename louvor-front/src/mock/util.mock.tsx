@@ -88,7 +88,7 @@ export default function mockCrudRoute(
       }
     },
     {
-      timing: constants.timeouts.mock,
+      timing: timeout,
     }
   );
 
@@ -131,7 +131,7 @@ export default function mockCrudRoute(
       }
     },
     {
-      timing: constants.timeouts.mock,
+      timing: timeout,
     }
   );
 

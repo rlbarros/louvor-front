@@ -69,11 +69,21 @@ export default function HomeDataTable({
     labelColumnValue: "style_id",
   } as LabelDefinition;
 
+  function notifyDelete(object: ServiceMusic) {
+    form.setValue("id", 0);
+    setTimeout(() => {
+      form.setValue("id", object.service_id);
+    }, 50);
+  }
+
   const columns = getColumns<ServiceMusic, ServiceMusicView>(
     labelDefinition,
     serviceMusicService,
     defaultServiceMusicView,
-    propertyMap
+    propertyMap,
+    false,
+    false,
+    notifyDelete
   );
 
   const idWatch = form.watch("id");
@@ -118,7 +128,6 @@ export default function HomeDataTable({
   useEffect(() => {
     const fetchData = async (id: number) => {
       if (id == 0) {
-        setServicesMusics([]);
         return;
       }
 
@@ -133,12 +142,16 @@ export default function HomeDataTable({
       setIsPending(false);
       setServicesMusics(fetchedServiceMusics);
       setSuggestId(0);
+      form.setValue("id", 0);
+      setTimeout(() => {
+        form.setValue("id", id);
+      }, 50);
     };
 
     if (suggestId > 0) {
       fetchData(suggestId);
     }
-  }, [suggestId, setSuggestId]);
+  }, [suggestId, setSuggestId, form]);
 
   useEffect(() => {
     const fetchData = async () => {

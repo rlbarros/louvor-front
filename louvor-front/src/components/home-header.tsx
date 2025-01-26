@@ -75,7 +75,6 @@ export default function HomeHeader({
       isNew = true;
       data.id = 0;
     }
-
     const newRecord = await serviceService.save(data);
     if (isNew) {
       services.push(newRecord);
@@ -87,6 +86,15 @@ export default function HomeHeader({
   }
 
   async function formSubmit(data: Service) {
+    const serviceDay = services.find(
+      (i) => new Date(i.day).toISOString() == data.day.toISOString()
+    );
+    if (serviceDay) {
+      if (Number(serviceDay.service_type_id) == Number(data.service_type_id)) {
+        return;
+      }
+    }
+
     const newRecord = await save(data);
     toast({
       title: "You submitted the following values:",

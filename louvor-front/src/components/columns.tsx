@@ -27,34 +27,39 @@ export default function getColumns<
   labelDefinition: LabelDefinition,
   crudService: CrudService<T, V>,
   record: V,
-  propertyMap: Map<string, string>
+  propertyMap: Map<string, string>,
+  selectVisible: boolean = false,
+  editVisible: boolean,
+  notifyDelete: (object: T) => void
 ): ColumnDef<V>[] {
   const columnsDefs: ColumnDef<V>[] = [];
 
-  columnsDefs.push({
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-        className="translate-y-[2px]"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-        className="translate-y-[2px]"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  });
+  if (selectVisible) {
+    columnsDefs.push({
+      id: "select",
+      header: ({ table }) => (
+        <Checkbox
+          checked={
+            table.getIsAllPageRowsSelected() ||
+            (table.getIsSomePageRowsSelected() && "indeterminate")
+          }
+          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+          aria-label="Select all"
+          className="translate-y-[2px]"
+        />
+      ),
+      cell: ({ row }) => (
+        <Checkbox
+          checked={row.getIsSelected()}
+          onCheckedChange={(value) => row.toggleSelected(!!value)}
+          aria-label="Select row"
+          className="translate-y-[2px]"
+        />
+      ),
+      enableSorting: false,
+      enableHiding: false,
+    });
+  }
 
   for (const property in record) {
     let title = "";
@@ -105,7 +110,6 @@ export default function getColumns<
 
           let variant: "outline" | "default" = "outline";
           if (isNumber(labelValue)) {
-            console.log(labelValue);
             if (labelValue % 2 == 0) {
               variant = "default";
             }
@@ -153,7 +157,14 @@ export default function getColumns<
   columnsDefs.push({
     id: "actions",
     cell: ({ row }) => {
-      return <DataTableRowActions row={row} crudService={crudService} />;
+      return (
+        <DataTableRowActions
+          row={row}
+          crudService={crudService}
+          editVisible={editVisible}
+          notifyDelete={notifyDelete}
+        />
+      );
     },
   });
 

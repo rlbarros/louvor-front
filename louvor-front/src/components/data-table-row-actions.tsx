@@ -7,32 +7,49 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { Ellipsis } from "lucide-react";
+import { Ellipsis, Loader2, Trash } from "lucide-react";
 import { CrudService } from "@/services/crud.service";
 import { Identifiable } from "@/models/app/identifiable.model";
+import { useEffect, useState } from "react";
 
-interface DataTableRowActionsProps<TData> {
+interface DataTableRowActionsProps<TData, T, V> {
   row: Row<TData>;
-  crudService: CrudService<Identifiable, Identifiable>;
+  crudService: CrudService<T, V>;
+  editVisible: boolean;
+  notifyDelete: (object: T) => void;
 }
 
-export function DataTableRowActions<TData>({
+export function DataTableRowActions<TData, T, V>({
   row,
   crudService,
-}: DataTableRowActionsProps<TData>) {
+  editVisible = true,
+  notifyDelete,
+}: DataTableRowActionsProps<TData, T, V>) {
+  const [isPending, setIsPending] = useState<boolean>(false);
   const object = row.original as Identifiable;
   function editRecord() {
     window.alert("edit " + object.id);
   }
 
-  async function deleteRecord() {
-    const deleteObject = await crudService.delete(object.id);
-    window.alert("deleted " + deleteObject.id);
+  function handleDeleteClick() {
+    setIsPending(true);
   }
+
+  useEffect(() => {
+    const deleteRecord = async () => {
+      const deleteObject = await crudService.delete(object.id);
+      notifyDelete(deleteObject);
+      setIsPending(false);
+      setIsPending(true);
+    };
+
+    if (isPending) {
+      deleteRecord();
+    }
+  }, [isPending, crudService, notifyDelete, object]);
 
   return (
     <DropdownMenu>
@@ -41,17 +58,31 @@ export function DataTableRowActions<TData>({
           variant="ghost"
           className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
         >
-          {/* <DotsHorizontalIcon className="h-4 w-4" /> */}
-          <Ellipsis className="h-4 w-4" />
-          <span className="sr-only">Open menu</span>
+          {isPending ? (
+            <Loader2 className="animate-spin" />
+          ) : (
+            <>
+              <Ellipsis className="h-4 w-4" />
+              <span className="sr-only">Open menu</span>
+            </>
+          )}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem onClick={editRecord}>Editar</DropdownMenuItem>
+        <DropdownMenuItem
+          style={editVisible ? {} : { display: "none" }}
+          onClick={editRecord}
+        >
+          Editar
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={deleteRecord}>
-          Deletar
-          <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+        <DropdownMenuItem
+          onClick={handleDeleteClick}
+          className="cursor-pointer"
+        >
+          <div className="flex flew-row gap-4">
+            Deletar <Trash className="ml-12" />{" "}
+          </div>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

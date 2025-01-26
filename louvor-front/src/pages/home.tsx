@@ -14,7 +14,7 @@ import _ from "lodash";
 
 const serviceSchema = z.object({
   day: z.date(),
-  service_type_id: z.string(),
+  service_type_id: z.any(),
 });
 
 const serviceService = new ServiceService();
