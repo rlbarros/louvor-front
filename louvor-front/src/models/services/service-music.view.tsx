@@ -4,6 +4,7 @@ export type ServiceMusicView = {
   music: string;
   genre: string;
   style: string;
+  style_id: number;
   interpreter: string;
 } & ServiceMusic;
 
@@ -15,4 +16,5 @@ export const defaultServiceMusicView = {
   genre: "",
   interpreter: "",
   style: "",
+  style_id: 0,
 } as ServiceMusicView;

@@ -124,6 +124,8 @@ export default function Home() {
               form={form}
               suggestId={suggestId}
               setSuggestId={setSuggestId}
+              services={services}
+              setServices={setServices}
             />
           )}
         </div>

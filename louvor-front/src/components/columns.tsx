@@ -10,6 +10,7 @@ import { Identifiable } from "@/models/app/identifiable.model";
 import { constants } from "@/constants";
 import { CrudService } from "@/services/crud.service";
 import { LabelDefinition } from "@/models/app/label-definition.model";
+import { isNumber } from "lodash";
 
 function filter<V>(row: Row<V>, id: string, value: string): boolean {
   const rowValue = row.getValue(id);
@@ -102,9 +103,21 @@ export default function getColumns<
             label: labelLabel,
           } as Label;
 
+          let variant: "outline" | "default" = "outline";
+          if (isNumber(labelValue)) {
+            console.log(labelValue);
+            if (labelValue % 2 == 0) {
+              variant = "default";
+            }
+          }
+
           return (
             <div className="flex space-x-2">
-              {label && <Badge variant="outline">{label.label}</Badge>}
+              {label && (
+                <Badge variant={variant} key={label.value}>
+                  {label.label}
+                </Badge>
+              )}
               <span className="max-w-[500px] truncate font-medium">
                 {row.getValue(property)}
               </span>

@@ -28,7 +28,8 @@ export default function mockCrudRoute(
   server: Server,
   route: string,
   schemaName: string,
-  timeout: number = constants.timeouts.mock
+  timeout: number = constants.timeouts.mock,
+  whereInsertProperty: string
 ) {
   const idRoute = `${route}/:id`;
 
@@ -103,9 +104,11 @@ export default function mockCrudRoute(
       if (schemaName in schema.db) {
         if (object.id == 0) {
           const objects = schema.db[schemaName];
-          const whereObjects = objects.where({ day: object.day });
+          const whereObjects = objects.where({
+            [whereInsertProperty]: object[whereInsertProperty],
+          });
           if (whereObjects.length == 0) {
-            let max = Math.max(...objects.map((o) => o.id));
+            let max = Math.max(...objects.map((o) => Number(o.id)));
             object.id = `${++max}`;
 
             objects.insert(object);

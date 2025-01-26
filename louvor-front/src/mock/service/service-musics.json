@@ -5,6 +5,7 @@
     "music": "Vencendo Vem Jesus (525)",
     "interpreter": "Missão Harpa",
     "style": "Animada",
+    "style_id": 2,
     "genre": "Rock"
   },
   {
@@ -13,6 +14,7 @@
     "music": "Bondade de Deus",
     "interpreter": "Isaías Saad",
     "style": "Adoração",
+    "style_id": 1,
     "genre": "Worship"
   },
   {
@@ -21,6 +23,7 @@
     "music": "Todas as Coisas",
     "interpreter": "Fernandinho",
     "style": "Adoração",
+    "style_id": 1,
     "genre": "Worship"
   },
   {
@@ -29,6 +32,7 @@
     "music": "Fico Feliz",
     "interpreter": "Aline Barros",
     "style": "Animada",
+    "style_id": 2,
     "genre": "Pop"
   },
   {
@@ -37,6 +41,7 @@
     "music": "Aquele que está Feliz",
     "interpreter": "Corinhos",
     "style": "Animada",
+    "style_id": 2,
     "genre": "Pop"
   },
   {
@@ -45,6 +50,7 @@
     "music": "Canção do Céu",
     "interpreter": "Gabriela Rocha",
     "style": "Adoração",
+    "style_id": 1,
     "genre": "Worship"
   },
   {
@@ -53,6 +59,7 @@
     "music": "Varão de Branco",
     "interpreter": "Alice Maciel",
     "style": "Animada",
+    "style_id": 2,
     "genre": "Corinho de Fogo"
   },
   {
@@ -61,6 +68,7 @@
     "music": "Não perdi o Controle",
     "interpreter": "Samuel Messias",
     "style": "Adoração",
+    "style_id": 1,
     "genre": "Gospel"
   },
   {
@@ -69,6 +77,7 @@
     "music": "O Cântico de Moisés",
     "interpreter": "Giovani Santos",
     "style": "Animada",
+    "style_id": 2,
     "genre": "Corinho de Fogo"
   },
   {
@@ -77,6 +86,7 @@
     "music": "A Boa Parte",
     "interpreter": "FHOP",
     "style": "Adoração",
+    "style_id": 1,
     "genre": "Worship"
   },
   {
@@ -85,6 +95,7 @@
     "music": "Liberta-me de Mim",
     "interpreter": "Luma Elpídio",
     "style": "Adoração",
+    "style_id": 1,
     "genre": "Gospel"
   },
   {
@@ -93,6 +104,7 @@
     "music": "Te Agradeço",
     "interpreter": "service_daynte do Trono",
     "style": "Animada",
+    "style_id": 2,
     "genre": "Pop"
   },
   {
@@ -101,6 +113,7 @@
     "music": "Eis que estou a porta",
     "interpreter": "Fernandinho",
     "style": "Animada",
+    "style_id": 2,
     "genre": "Pop Rock"
   },
   {
@@ -109,6 +122,7 @@
     "music": "Lugar Secreto",
     "interpreter": "Gabriela Rocha",
     "style": "Adoração",
+    "style_id": 1,
     "genre": "Worship"
   },
   {
@@ -117,6 +131,7 @@
     "music": "Sempre foi Deus",
     "interpreter": "Kemilly Santos",
     "style": "Adoração",
+    "style_id": 1,
     "genre": "Gospel"
   },
   {
@@ -125,6 +140,7 @@
     "music": "Aos Pés da Cruz",
     "interpreter": "Kleber Lucas",
     "style": "Adoração",
+    "style_id": 1,
     "genre": "Gospel"
   },
   {
@@ -133,6 +149,7 @@
     "music": "João 20 -+ Aqui Está",
     "interpreter": "Luigi Natalino",
     "style": "Adoração",
+    "style_id": 1,
     "genre": "Worship"
   },
   {
@@ -141,6 +158,7 @@
     "music": "Pra Sempre",
     "interpreter": "Fernandinho",
     "style": "Adoração",
+    "style_id": 1,
     "genre": "Worship"
   },
   {
@@ -149,6 +167,7 @@
     "music": "Imagem de Deus",
     "interpreter": "Voz da Verdade",
     "style": "Adoração",
+    "style_id": 1,
     "genre": "Gospel"
   },
   {
@@ -157,6 +176,7 @@
     "music": "Senhor dos Exércitos",
     "interpreter": "Isaías Saad",
     "style": "Animada",
+    "style_id": 2,
     "genre": "Rock"
   },
   {
@@ -165,6 +185,7 @@
     "music": "Os Guerreiros se Preparam (212)",
     "interpreter": "Harpa Cristã",
     "style": "Animada",
+    "style_id": 2,
     "genre": "Marchinha"
   },
   {
@@ -173,6 +194,7 @@
     "music": "Os que Confiam",
     "interpreter": "Fernandinho",
     "style": "Animada",
+    "style_id": 2,
     "genre": "Rock"
   },
   {
@@ -181,6 +203,7 @@
     "music": "Oferta Agradável a TI",
     "interpreter": "Cássiane",
     "style": "Adoração",
+    "style_id": 1,
     "genre": "Gospel"
   },
   {
@@ -189,6 +212,7 @@
     "music": "Eu Louvarei ao Senhor ",
     "interpreter": "Chagas Sobrinho ",
     "style": "Adoração",
+    "style_id": 1,
     "genre": "Clássicos "
   }
 ]

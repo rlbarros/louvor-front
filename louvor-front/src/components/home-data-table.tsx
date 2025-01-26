@@ -7,7 +7,13 @@ import {
   ServiceMusicView,
 } from "@/models/services/service-music.view";
 import { LabelDefinition } from "@/models/app/label-definition.model";
-import { MouseEvent, useEffect, useState } from "react";
+import {
+  Dispatch,
+  MouseEvent,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { Service } from "@/models/services/service.model";
 import { ServiceMusicService } from "@/services/service/service-music.service";
 import { FadeLoader } from "react-spinners";
@@ -24,19 +30,25 @@ import {
 import { DialogDescription, DialogTitle } from "./ui/dialog";
 import { MusicService } from "@/services/music/music.service";
 import { Badge } from "./ui/badge";
+import { ServiceService } from "@/services/service/service.service";
 
 interface HomeDataTableProps {
   form: UseFormReturn<Service>;
   suggestId: number;
   setSuggestId: (id: number) => void;
+  services: Service[];
+  setServices: Dispatch<SetStateAction<Service[]>>;
 }
 
 const serviceMusicService = new ServiceMusicService();
+const serviceService = new ServiceService();
 
 export default function HomeDataTable({
   form,
   suggestId,
   setSuggestId,
+  services,
+  setServices,
 }: HomeDataTableProps) {
   const [servicesMusics, setServicesMusics] = useState<ServiceMusicView[]>([]);
   const [openAddDialog, setOpenAddDialog] = useState(false);
@@ -54,7 +66,7 @@ export default function HomeDataTable({
   const labelDefinition = {
     labelContainer: "music",
     labelColumnLabel: "style",
-    labelColumnValue: "style",
+    labelColumnValue: "style_id",
   } as LabelDefinition;
 
   const columns = getColumns<ServiceMusic, ServiceMusicView>(
@@ -145,7 +157,8 @@ export default function HomeDataTable({
         if (commandGroupDiv) {
           const divs = commandGroupDiv.querySelectorAll("[id^='bid-']");
           if (divs.length == 1) {
-            console.log(divs[0].id);
+            const sid = divs[0].id;
+            addMusic(sid);
             setOpenAddDialog(false);
           }
         }
@@ -153,13 +166,50 @@ export default function HomeDataTable({
     };
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, []);
+  });
 
   function handleMusicSelect(e: MouseEvent) {
-    console.log("teste", e);
-    const id = e.currentTarget.id;
-    console.log(id);
+    const sid = e.currentTarget.id;
+    addMusic(sid);
     setOpenAddDialog(false);
+  }
+
+  async function addMusic(sid: string) {
+    setIsPending(true);
+    const id = Number(sid.replace("bid-", ""));
+    const music = musics.find((i) => i.id == id);
+    if (!music) {
+      setIsPending(false);
+      return;
+    }
+
+    let serviceId = idWatch;
+    if (serviceId == 0) {
+      const values = form.getValues();
+      if (!values) {
+        return;
+      }
+      const newService = await serviceService.save(values);
+      serviceId = newService.id;
+      services.push(newService);
+      setServices(services);
+    }
+
+    const { interpreter, genre, style } = music;
+    const serviceMusic = {
+      id: 0,
+      service_id: serviceId,
+      music_id: music.id,
+      music: music.name,
+      interpreter,
+      genre,
+      style,
+    } as ServiceMusic;
+    const newServiceMusic = await serviceMusicService.save(serviceMusic);
+    servicesMusics.push(newServiceMusic as ServiceMusicView);
+    setServicesMusics(servicesMusics);
+    setIsPending(false);
+    form.setValue("id", serviceId);
   }
 
   return !isPending ? (
@@ -190,6 +240,7 @@ export default function HomeDataTable({
                     handleMusicSelect(e);
                   }}
                 >
+                  <Badge>{music.style}</Badge>
                   <Badge variant="outline">{music.interpreter}</Badge>
 
                   {music.name}

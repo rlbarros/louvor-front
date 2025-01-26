@@ -11,8 +11,20 @@ export default function mockMusic(server: Server) {
   const musicsRoute = `${musicRoute}/${musicDomain.routes.musics}`;
   const interpretersRoute = `${musicRoute}/${musicDomain.routes.interpreters}`;
 
-  mockCrudRoute(server, stylesRoute, musicDomain.routes.styles, 0);
-  mockCrudRoute(server, genresRoute, musicDomain.routes.genres, 0);
-  mockCrudRoute(server, musicsRoute, musicDomain.routes.musics);
-  mockCrudRoute(server, interpretersRoute, musicDomain.routes.interpreters);
+  mockCrudRoute(server, stylesRoute, musicDomain.routes.styles, 0, "name");
+  mockCrudRoute(server, genresRoute, musicDomain.routes.genres, 0, "name");
+  mockCrudRoute(
+    server,
+    musicsRoute,
+    musicDomain.routes.musics,
+    constants.timeouts.mock,
+    "name"
+  );
+  mockCrudRoute(
+    server,
+    interpretersRoute,
+    musicDomain.routes.interpreters,
+    constants.timeouts.mock,
+    "name"
+  );
 }

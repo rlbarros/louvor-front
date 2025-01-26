@@ -140,6 +140,7 @@ export default function mockMusicService(server: Server) {
     server,
     servicesMusicRoute,
     serviceDomain.routes.servicesMusics,
-    100
+    100,
+    "id"
   );
 }
