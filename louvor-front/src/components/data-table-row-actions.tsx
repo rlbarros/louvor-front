@@ -43,7 +43,6 @@ export function DataTableRowActions<TData, T, V>({
       const deleteObject = await crudService.delete(object.id);
       notifyDelete(deleteObject);
       setIsPending(false);
-      setIsPending(true);
     };
 
     if (isPending) {

@@ -1,11 +1,12 @@
 import { CrudService } from "@/services/crud.service";
-import { useEffect, useState } from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
 import { FadeLoader } from "react-spinners";
 import { ZodTypeAny } from "zod";
 import getColumns from "./columns";
 import { LabelDefinition } from "@/models/app/label-definition.model";
 import { Identifiable } from "@/models/app/identifiable.model";
 import { DataTable } from "./data-table";
+import { toast } from "@/hooks/use-toast";
 
 export interface CrudInputs<T extends Identifiable, V extends Identifiable> {
   crudService: CrudService<T, V>;
@@ -14,6 +15,7 @@ export interface CrudInputs<T extends Identifiable, V extends Identifiable> {
   record: V;
   propertyMap: Map<string, string>;
   title: string;
+  setOpenAddDialog: (value: boolean) => void;
 }
 
 export default function Crud<T extends Identifiable, V extends Identifiable>({
@@ -22,10 +24,11 @@ export default function Crud<T extends Identifiable, V extends Identifiable>({
   record,
   propertyMap,
   title,
-}: CrudInputs<T, V>) {
+  setOpenAddDialog,
+  children,
+}: PropsWithChildren<CrudInputs<T, V>>) {
   const [records, setRecords] = useState<V[]>([]);
   const [isPending, setIsPending] = useState(true);
-  const [openAddDialog, setOpenAddDialog] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,12 +38,15 @@ export default function Crud<T extends Identifiable, V extends Identifiable>({
         setRecords(fetchedRecords);
       }
     };
-
     fetchData();
   }, [crudService]);
 
-  function notifyDelete(object: T) {
-    console.log(object);
+  async function notifyDelete(object: T) {
+    toast({
+      title: "registro excluído",
+      description: `registro de id ${object.id} excluído`,
+    });
+    setRecords(records.filter((i) => i.id != object.id));
   }
 
   const columns = getColumns<T, V>(
@@ -77,7 +83,7 @@ export default function Crud<T extends Identifiable, V extends Identifiable>({
         propertyMap={propertyMap}
         setOpenAddDialog={setOpenAddDialog}
       >
-        <span>teste {openAddDialog}</span>
+        {children}
       </DataTable>
     </div>
   );
