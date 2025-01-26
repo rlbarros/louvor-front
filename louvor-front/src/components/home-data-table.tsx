@@ -183,16 +183,17 @@ export default function HomeDataTable({
           <CommandGroup heading="Músicas" id="command-group">
             {musics.map((music) => (
               <CommandItem key={music.id}>
-                <Badge
-                  className="cursor-pointer"
-                  variant="outline"
+                <div
+                  className="cursor-pointer flex w-full"
                   id={`bid-${music.id}`}
                   onClick={(e) => {
                     handleMusicSelect(e);
                   }}
                 >
+                  <Badge variant="outline">{music.interpreter}</Badge>
+
                   {music.name}
-                </Badge>
+                </div>
               </CommandItem>
             ))}
           </CommandGroup>
