@@ -3,9 +3,7 @@ import {
   AudioWaveform,
   CalendarDays,
   Command,
-  Frame,
   GalleryVerticalEnd,
-  Map,
   PieChart,
   Settings2,
 } from "lucide-react";
@@ -94,19 +92,9 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
+      name: "Relatórios",
       url: "#",
       icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
     },
   ],
 };

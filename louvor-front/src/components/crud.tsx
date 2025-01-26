@@ -25,6 +25,7 @@ export default function Crud<T extends Identifiable, V extends Identifiable>({
 }: CrudInputs<T, V>) {
   const [records, setRecords] = useState<V[]>([]);
   const [isPending, setIsPending] = useState(true);
+  const [openAddDialog, setOpenAddDialog] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,7 +53,13 @@ export default function Crud<T extends Identifiable, V extends Identifiable>({
           <h2 className="text-2xl font-bold tracking-tight">{title}</h2>
         </div>
         <div className="flex items-center space-x-2">
-          <FadeLoader color="#FFFFFF" loading={isPending} />
+          <FadeLoader
+            color="#FFFFFF"
+            width={2}
+            height={10}
+            margin={-5}
+            loading={isPending}
+          />
         </div>
       </div>
       <DataTable
@@ -61,7 +68,10 @@ export default function Crud<T extends Identifiable, V extends Identifiable>({
         title={title}
         filterColumn="name"
         propertyMap={propertyMap}
-      />
+        setOpenAddDialog={setOpenAddDialog}
+      >
+        <span>teste {openAddDialog}</span>
+      </DataTable>
     </div>
   );
 }

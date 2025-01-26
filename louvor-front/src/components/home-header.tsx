@@ -39,17 +39,22 @@ import { UseFormReturn } from "react-hook-form";
 import { PopoverClose } from "@radix-ui/react-popover";
 import { useState } from "react";
 import { ptBR } from "date-fns/locale";
+import { ServiceService } from "@/services/service/service.service";
 
 interface HomeHeaderProps {
   form: UseFormReturn<Service>;
   services: Service[];
   servicesTypes: ServiceType[];
+  serviceService: ServiceService;
+  inferMusics: (id: number) => void;
 }
 
 export default function HomeHeader({
   form,
   services,
   servicesTypes,
+  serviceService,
+  inferMusics,
 }: HomeHeaderProps) {
   const [open, setOpen] = useState<boolean>(false);
 
@@ -59,19 +64,37 @@ export default function HomeHeader({
     });
   }
 
-  function onSubmit(data: Service) {
-    const serviceDay = services.find((i) => i.day == data.day);
+  async function save(data: Service) {
+    const serviceDay = services.find(
+      (i) => new Date(i.day).toISOString() == data.day.toISOString()
+    );
+    let isNew = false;
     if (serviceDay) {
       data.id = serviceDay.id;
     } else {
+      isNew = true;
       data.id = 0;
     }
 
+    const newRecord = await serviceService.save(data);
+    if (isNew) {
+      services.push(newRecord);
+    } else {
+      const index = services.findIndex((i) => i.id == newRecord.id);
+      services[index] = newRecord;
+    }
+    return newRecord;
+  }
+
+  async function formSubmit(data: Service) {
+    const newRecord = await save(data);
     toast({
       title: "You submitted the following values:",
       description: (
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+          <code className="text-white">
+            {JSON.stringify(newRecord, null, 2)}
+          </code>
         </pre>
       ),
     });
@@ -125,9 +148,22 @@ export default function HomeHeader({
     }
   }
 
+  const handleSubmit = form.handleSubmit;
+
+  async function handleSuggestClick() {
+    let service = form.getValues();
+    if (service) {
+      const id = service.id;
+      if (id == 0) {
+        service = await save(service);
+      }
+      inferMusics(service.id);
+    }
+  }
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={handleSubmit(formSubmit)}>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
           <div className="grid auto-rows-min gap-4 md:grid-cols-3">
             <div className="aspect-video rounded-xl">
@@ -273,10 +309,17 @@ export default function HomeHeader({
             </div>
 
             <div
-              className="aspect-video rounded-xl items-top"
+              className="aspect-video rounded-xl items-top flex-row gap-4"
               style={{ paddingTop: "1.5rem" }}
             >
               <Button type="submit">Salvar</Button>
+              <Button
+                className="ml-4"
+                variant="secondary"
+                onClick={handleSuggestClick}
+              >
+                Sugerir
+              </Button>
             </div>
           </div>
         </div>

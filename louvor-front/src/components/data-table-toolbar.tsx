@@ -6,12 +6,14 @@ import { Input } from "@/components/ui/input";
 // import { DataTableFacetedFilter } from "./data-table-faceted-filter";
 import { X } from "lucide-react";
 import { DataTableViewOptions } from "./data-table-view-options";
+import { PropsWithChildren } from "react";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
   title: string;
   filterColumn: string;
   propertyMap: Map<string, string>;
+  setOpenAddDialog: (value: boolean) => void;
 }
 
 export function DataTableToolbar<TData>({
@@ -19,7 +21,9 @@ export function DataTableToolbar<TData>({
   title,
   filterColumn,
   propertyMap,
-}: DataTableToolbarProps<TData>) {
+  setOpenAddDialog,
+  children,
+}: PropsWithChildren<DataTableToolbarProps<TData>>) {
   const isFiltered = table.getState().columnFilters.length > 0;
   const placeholder = `filtre ${title.toLowerCase()}...`;
 
@@ -61,7 +65,13 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
-      <DataTableViewOptions table={table} propertyMap={propertyMap} />
+      <DataTableViewOptions
+        table={table}
+        propertyMap={propertyMap}
+        setOpenAddDialog={setOpenAddDialog}
+      >
+        {children}
+      </DataTableViewOptions>
     </div>
   );
 }

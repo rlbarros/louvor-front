@@ -15,4 +15,13 @@ export class ServiceMusicService extends CrudService<
   override route() {
     return constants.domains.service.routes.servicesMusics;
   }
+
+  async action(
+    queryParams: Record<string, string> = {}
+  ): Promise<ServiceMusicView[]> {
+    const options = this.options("PUT");
+    const path = this.pathQuery(queryParams);
+
+    return await fetch(path, options).then((r) => r.json());
+  }
 }

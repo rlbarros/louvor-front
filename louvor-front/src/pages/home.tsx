@@ -13,12 +13,8 @@ import { ServiceType } from "@/models/services/service-type.model";
 import _ from "lodash";
 
 const serviceSchema = z.object({
-  day: z.date({
-    required_error: "a data do culto é obrigatório",
-  }),
-  service_type: z.string({
-    required_error: "por favor selecione um tipo de culto",
-  }),
+  day: z.date(),
+  service_type_id: z.string(),
 });
 
 const serviceService = new ServiceService();
@@ -28,6 +24,7 @@ export default function Home() {
   const [services, setServices] = useState<Service[]>([]);
   const [servicesTypes, setServicesTypes] = useState<ServiceType[]>([]);
   const [isPending, setIsPending] = useState(true);
+  const [suggestId, setSuggestId] = useState(0);
 
   const form = useForm<Service>({
     resolver: zodResolver(serviceSchema),
@@ -100,6 +97,10 @@ export default function Home() {
     fetchData();
   }, [form]);
 
+  function inferMusics(id: number) {
+    setSuggestId(id);
+  }
+
   return (
     <>
       <div className="hidden space-y-6 p-10 pb-16 md:block">
@@ -110,13 +111,21 @@ export default function Home() {
               form={form}
               services={services}
               servicesTypes={servicesTypes}
+              serviceService={serviceService}
+              inferMusics={inferMusics}
             />
           )}
           <FadeLoader loading={isPending} />
         </div>
         <Separator className="my-6" />
         <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
-          {!isPending && <HomeDataTable form={form} />}
+          {!isPending && (
+            <HomeDataTable
+              form={form}
+              suggestId={suggestId}
+              setSuggestId={setSuggestId}
+            />
+          )}
         </div>
       </div>
     </>

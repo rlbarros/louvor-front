@@ -1,20 +1,15 @@
 import { constants } from "@/constants";
 import { Server } from "miragejs";
 import mockCrudRoute from "../util.mock";
+import mockMusicService from "./services-musics.mock";
 
 export default function mockService(server: Server) {
   const serviceDomain = constants.domains.service;
   const serviceRoute = `${constants.api}/${serviceDomain.name}`;
 
-  const servicesMusicRoute = `${serviceRoute}/${serviceDomain.routes.servicesMusics}`;
   const servicesTypesRoute = `${serviceRoute}/${serviceDomain.routes.servicesTypes}`;
   const servicesRoute = `${serviceRoute}/${serviceDomain.routes.services}`;
 
-  mockCrudRoute(
-    server,
-    servicesMusicRoute,
-    serviceDomain.routes.servicesMusics
-  );
   mockCrudRoute(
     server,
     servicesTypesRoute,
@@ -22,4 +17,6 @@ export default function mockService(server: Server) {
     0
   );
   mockCrudRoute(server, servicesRoute, serviceDomain.routes.services, 100);
+
+  mockMusicService(server);
 }

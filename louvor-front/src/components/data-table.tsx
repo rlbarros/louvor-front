@@ -27,6 +27,7 @@ import {
 
 import { DataTablePagination } from "../components/data-table-pagination";
 import { DataTableToolbar } from "../components/data-table-toolbar";
+import { PropsWithChildren } from "react";
 
 interface DataTableProps<V> {
   columns: ColumnDef<V>[];
@@ -34,6 +35,7 @@ interface DataTableProps<V> {
   title: string;
   filterColumn: string;
   propertyMap: Map<string, string>;
+  setOpenAddDialog: (value: boolean) => void;
 }
 
 export function DataTable<V>({
@@ -42,7 +44,9 @@ export function DataTable<V>({
   title,
   filterColumn,
   propertyMap,
-}: DataTableProps<V>) {
+  setOpenAddDialog,
+  children,
+}: PropsWithChildren<DataTableProps<V>>) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
@@ -80,7 +84,10 @@ export function DataTable<V>({
         title={title}
         filterColumn={filterColumn}
         propertyMap={propertyMap}
-      />
+        setOpenAddDialog={setOpenAddDialog}
+      >
+        {children}
+      </DataTableToolbar>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
