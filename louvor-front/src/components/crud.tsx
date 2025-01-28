@@ -52,6 +52,7 @@ export default function Crud<
   const [isPending, setIsPending] = useState(true);
   const [crudMode, setCrudMode] = useState<CrudMode>("save");
   const [crudId, setCrudId] = useState<number>(0);
+  const [isSaving, setIsSaving] = useState<boolean>(false);
   const crudModeState = {
     crudMode,
     setCrudMode,
@@ -68,6 +69,10 @@ export default function Crud<
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!isPending) {
+        console.log("skuipuy");
+        return;
+      }
       const fetchedRecords = await crudService.list();
       if (fetchedRecords) {
         setIsPending(false);
@@ -75,7 +80,7 @@ export default function Crud<
       }
     };
     fetchData();
-  }, [crudService]);
+  }, [crudService, isPending]);
 
   async function notifyDelete(object: T) {
     toast({
@@ -102,7 +107,10 @@ export default function Crud<
     } else {
       data.id = crudId;
     }
+    setIsSaving(true);
     await saveData(data);
+    setIsSaving(false);
+    setIsPending(true);
   }
 
   async function handleEdit(id: number) {
@@ -175,16 +183,24 @@ export default function Crud<
                   </DialogHeader>
                   <div className="grid gap-4 py-4">{children}</div>
                   <DialogFooter>
-                    {isSubmitting ? (
-                      <FadeLoader
-                        width={3}
-                        height={10}
-                        margin={-10}
-                        className="ml-8 mt-3"
-                      />
-                    ) : (
-                      <Button type="submit">Salvar {singularTitle}</Button>
-                    )}
+                    <div className="flex w-[375px] justify-center items-center align-middle mt-4">
+                      {isSubmitting || isSaving ? (
+                        <FadeLoader
+                          width={3}
+                          height={10}
+                          margin={-10}
+                          color="#FFFFFF"
+                          className="ml-8 mt-3"
+                        />
+                      ) : (
+                        <Button
+                          className="w-[375px] justify-center items-center align-middle"
+                          type="submit"
+                        >
+                          Salvar {singularTitle}
+                        </Button>
+                      )}
+                    </div>
                   </DialogFooter>
                 </form>
               </Form>

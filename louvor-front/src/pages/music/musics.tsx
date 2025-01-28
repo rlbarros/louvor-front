@@ -33,13 +33,32 @@ import {
 import { Style } from "@/models/music/style.model";
 import { Genre } from "@/models/music/genre.model";
 import { SelectGroup } from "@radix-ui/react-select";
+import { AutoComplete, Option } from "@/components/autocomplete";
+import { FadeLoader } from "react-spinners";
 
 export function Musics() {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const musicService = new MusicService();
-
   const [styles, setStyles] = useState<Style[]>([]);
   const [genres, setGenres] = useState<Genre[]>([]);
   const [interpreters, setInterpreters] = useState<Interpreter[]>([]);
+  const [interpretersOptions, setInterpretersOptions] = useState<Option[]>([]);
+
+  function getInterpreterOption(id: number) {
+    const interpreterOption = interpretersOptions.find(
+      (i) => Number(i.value) == id
+    );
+    return interpreterOption;
+  }
+
+  function setOptionInterpreter(option: Option) {
+    const interpreter = interpreters.find(
+      (i) => Number(i.id) == Number(option.value)
+    );
+    if (interpreter) {
+      form.setValue("interpreter_id", interpreter.id);
+    }
+  }
 
   useEffect(() => {
     const styleService = new StyleService();
@@ -64,12 +83,22 @@ export function Musics() {
       const fetchedInterpreters = await interpreterService.list();
       if (fetchedInterpreters) {
         setInterpreters(fetchedInterpreters);
+        const mappedInterpretedOptions = fetchedInterpreters.map((i) => {
+          return {
+            value: `${i.id}`,
+            label: i.name,
+          } as Option;
+        });
+        setInterpretersOptions(mappedInterpretedOptions);
+        setIsLoading(false);
       }
     };
 
     fetchStyles();
     fetchGenres();
-    fetchInterpreters();
+    setTimeout(() => {
+      fetchInterpreters();
+    }, 100);
   }, []);
 
   const genre = "genre";
@@ -117,7 +146,17 @@ export function Musics() {
   const singularTitle = singularFromPlural(pluralTitle);
   const description = "louvor que será entoado no culto";
 
-  return (
+  return isLoading ? (
+    <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex w-full items-center">
+      <FadeLoader
+        color="#FFFFFF"
+        width={2}
+        height={10}
+        margin={-5}
+        loading={isLoading}
+      />
+    </div>
+  ) : (
     <Crud
       crudService={musicService}
       form={form}
@@ -197,26 +236,20 @@ export function Musics() {
             name="interpreter_id"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="pl-2">{interprete}</FormLabel>
-                <Select value={`${field.value}`} onValueChange={field.onChange}>
-                  <FormControl>
-                    <SelectTrigger className="w-[280px]">
-                      <SelectValue placeholder="Selectione o intérprete" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel>intérpretes</SelectLabel>
-                      {interpreters.map((i) => {
-                        return (
-                          <SelectItem key={i.id} value={`${i.id}`}>
-                            {i.name}
-                          </SelectItem>
-                        );
-                      })}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
+                <FormLabel className="pl-2" asChild>
+                  <legend>{interprete}</legend>
+                </FormLabel>
+                <FormControl>
+                  <AutoComplete
+                    options={interpretersOptions}
+                    emptyMessage="Sem Resultados"
+                    placeholder="Selecione um intérprete"
+                    isLoading={isLoading}
+                    onValueChange={setOptionInterpreter}
+                    value={getInterpreterOption(field.value)}
+                    disabled={false}
+                  />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
