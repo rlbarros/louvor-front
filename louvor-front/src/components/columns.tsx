@@ -26,10 +26,11 @@ export default function getColumns<
 >(
   labelDefinition: LabelDefinition,
   crudService: CrudService<T, V>,
-  record: V,
+  exampleRecord: V,
   propertyMap: Map<string, string>,
   selectVisible: boolean = false,
   editVisible: boolean,
+  handleEdit: (id: number) => void,
   notifyDelete: (object: T) => void
 ): ColumnDef<V>[] {
   const columnsDefs: ColumnDef<V>[] = [];
@@ -61,7 +62,7 @@ export default function getColumns<
     });
   }
 
-  for (const property in record) {
+  for (const property in exampleRecord) {
     let title = "";
     if (propertyMap.has(property)) {
       const value = propertyMap.get(property);
@@ -88,18 +89,18 @@ export default function getColumns<
         ),
         cell: ({ row }) => {
           let labelValue: string | number = 0;
-          let labelLabel: string | number = "";
+          let labelLabel: string = "";
           const record = row.original;
           if (record) {
             if (labelDefinition?.labelColumnValue in record) {
-              labelValue = (record as Record<string, number | string>)[
+              labelValue = (record as Record<string, unknown>)[
                 labelDefinition?.labelColumnValue
-              ];
+              ] as string | number;
             }
             if (labelDefinition?.labelColumnLabel in record) {
-              labelLabel = (record as Record<string, number | string>)[
+              labelLabel = (record as Record<string, unknown>)[
                 labelDefinition?.labelColumnLabel
-              ];
+              ] as string;
             }
           }
 
@@ -162,6 +163,7 @@ export default function getColumns<
           row={row}
           crudService={crudService}
           editVisible={editVisible}
+          handleEdit={handleEdit}
           notifyDelete={notifyDelete}
         />
       );

@@ -3,27 +3,36 @@ import { Table } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-// import { DataTableFacetedFilter } from "./data-table-faceted-filter";
 import { X } from "lucide-react";
 import { DataTableViewOptions } from "./data-table-view-options";
 import { PropsWithChildren } from "react";
+import { UseFormReturn } from "react-hook-form";
+import { Identifiable } from "@/models/app/identifiable.model";
 
-interface DataTableToolbarProps<TData> {
-  table: Table<TData>;
+interface DataTableToolbarProps<
+  T extends Identifiable,
+  V extends Identifiable
+> {
+  form: UseFormReturn<T>;
+  table: Table<V>;
   title: string;
   filterColumn: string;
   propertyMap: Map<string, string>;
   setOpenAddDialog: (value: boolean) => void;
 }
 
-export function DataTableToolbar<TData>({
+export function DataTableToolbar<
+  T extends Identifiable,
+  V extends Identifiable
+>({
+  form,
   table,
   title,
   filterColumn,
   propertyMap,
   setOpenAddDialog,
   children,
-}: PropsWithChildren<DataTableToolbarProps<TData>>) {
+}: PropsWithChildren<DataTableToolbarProps<T, V>>) {
   const isFiltered = table.getState().columnFilters.length > 0;
   const placeholder = `filtre ${title.toLowerCase()}...`;
 
@@ -66,6 +75,7 @@ export function DataTableToolbar<TData>({
         )}
       </div>
       <DataTableViewOptions
+        form={form}
         table={table}
         propertyMap={propertyMap}
         setOpenAddDialog={setOpenAddDialog}

@@ -28,8 +28,11 @@ import {
 import { DataTablePagination } from "../components/data-table-pagination";
 import { DataTableToolbar } from "../components/data-table-toolbar";
 import { PropsWithChildren } from "react";
+import { UseFormReturn } from "react-hook-form";
+import { Identifiable } from "@/models/app/identifiable.model";
 
-interface DataTableProps<V> {
+interface DataTableProps<T extends Identifiable, V extends Identifiable> {
+  form: UseFormReturn<T>;
   columns: ColumnDef<V>[];
   data: V[];
   title: string;
@@ -38,7 +41,8 @@ interface DataTableProps<V> {
   setOpenAddDialog: (value: boolean) => void;
 }
 
-export function DataTable<V>({
+export function DataTable<T extends Identifiable, V extends Identifiable>({
+  form,
   columns,
   data,
   title,
@@ -46,7 +50,7 @@ export function DataTable<V>({
   propertyMap,
   setOpenAddDialog,
   children,
-}: PropsWithChildren<DataTableProps<V>>) {
+}: PropsWithChildren<DataTableProps<T, V>>) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
@@ -80,6 +84,7 @@ export function DataTable<V>({
   return (
     <div className="space-y-4">
       <DataTableToolbar
+        form={form}
         table={table}
         title={title}
         filterColumn={filterColumn}

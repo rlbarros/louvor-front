@@ -1,10 +1,10 @@
 import { Music } from "./music.model";
 
-export type MusicView = {
+export interface MusicView extends Music {
   genre: string;
   style: string;
   interpreter: string;
-} & Music;
+}
 
 export const defaultMusicView = {
   id: 0,

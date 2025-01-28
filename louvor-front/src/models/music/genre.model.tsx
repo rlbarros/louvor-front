@@ -1,8 +1,8 @@
 import { Identifiable } from "../app/identifiable.model";
 
-export type Genre = {
+export interface Genre extends Identifiable {
   name: string;
-} & Identifiable;
+}
 
 export const defaultGenre = {
   id: 0,

@@ -19,7 +19,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import AuthContext from "@/utils/contexts";
+import { AuthContext } from "@/utils/contexts";
 import slash from "@/utils/slash";
 import { constants } from "@/constants";
 

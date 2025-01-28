@@ -10,21 +10,37 @@ import {
 import { CirclePlus, Settings2 } from "lucide-react";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { Button } from "./ui/button";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useContext } from "react";
+import { CrudContext } from "@/utils/contexts";
+import { UseFormReturn } from "react-hook-form";
+import { Identifiable } from "@/models/app/identifiable.model";
 
-interface DataTableViewOptionsProps<TData> {
-  table: Table<TData>;
+interface DataTableViewOptionsProps<
+  T extends Identifiable,
+  V extends Identifiable
+> {
+  form: UseFormReturn<T>;
+  table: Table<V>;
   propertyMap: Map<string, string>;
   setOpenAddDialog: (value: boolean) => void;
 }
 
-export function DataTableViewOptions<TData>({
+export function DataTableViewOptions<
+  T extends Identifiable,
+  V extends Identifiable
+>({
+  form,
   table,
   propertyMap,
   setOpenAddDialog,
   children,
-}: PropsWithChildren<DataTableViewOptionsProps<TData>>) {
+}: PropsWithChildren<DataTableViewOptionsProps<T, V>>) {
+  const crudContextState = useContext(CrudContext);
+  const { setCrudMode } = crudContextState;
+
   function handleAddClick() {
+    form.reset();
+    setCrudMode("save");
     setOpenAddDialog(true);
   }
 

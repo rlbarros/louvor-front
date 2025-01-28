@@ -1,8 +1,8 @@
 import { Identifiable } from "../app/identifiable.model";
 
-export type Interpreter = {
+export interface Interpreter extends Identifiable {
   name: string;
-} & Identifiable;
+}
 
 export const defaultInterpreter = {
   id: 0,

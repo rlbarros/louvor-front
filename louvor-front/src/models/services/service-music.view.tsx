@@ -1,12 +1,12 @@
 import { ServiceMusic } from "./service-music.model";
 
-export type ServiceMusicView = {
+export interface ServiceMusicView extends ServiceMusic {
   music: string;
   genre: string;
   style: string;
   style_id: number;
   interpreter: string;
-} & ServiceMusic;
+}
 
 export const defaultServiceMusicView = {
   id: 0,

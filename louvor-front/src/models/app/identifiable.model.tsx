@@ -1,3 +1,3 @@
-export type Identifiable = {
+export interface Identifiable {
   id: number;
-};
+}

@@ -1,9 +1,9 @@
 import { Identifiable } from "../app/identifiable.model";
 
-export type ServiceType = {
+export interface ServiceType extends Identifiable {
   name: string;
   music_count: number;
-} & Identifiable;
+}
 
 export const defaultServiceType = {
   id: 0,

@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { Ellipsis, Loader2, Trash } from "lucide-react";
+import { Edit, Ellipsis, Loader2, Trash } from "lucide-react";
 import { CrudService } from "@/services/crud.service";
 import { Identifiable } from "@/models/app/identifiable.model";
 import { useEffect, useState } from "react";
@@ -19,6 +19,7 @@ interface DataTableRowActionsProps<TData, T, V> {
   row: Row<TData>;
   crudService: CrudService<T, V>;
   editVisible: boolean;
+  handleEdit: (id: number) => void;
   notifyDelete: (object: T) => void;
 }
 
@@ -26,12 +27,13 @@ export function DataTableRowActions<TData, T, V>({
   row,
   crudService,
   editVisible = true,
+  handleEdit,
   notifyDelete,
 }: DataTableRowActionsProps<TData, T, V>) {
   const [isPending, setIsPending] = useState<boolean>(false);
   const object = row.original as Identifiable;
   function editRecord() {
-    window.alert("edit " + object.id);
+    handleEdit(object.id);
   }
 
   function handleDeleteClick() {
@@ -72,7 +74,9 @@ export function DataTableRowActions<TData, T, V>({
           style={editVisible ? {} : { display: "none" }}
           onClick={editRecord}
         >
-          Editar
+          <div className="flex flew-row gap-4">
+            Editar <Edit className="ml-14" />
+          </div>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
@@ -80,7 +84,7 @@ export function DataTableRowActions<TData, T, V>({
           className="cursor-pointer"
         >
           <div className="flex flew-row gap-4">
-            Deletar <Trash className="ml-12" />{" "}
+            Deletar <Trash className="ml-12" />
           </div>
         </DropdownMenuItem>
       </DropdownMenuContent>

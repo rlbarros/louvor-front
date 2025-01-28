@@ -1,8 +1,8 @@
 import { Identifiable } from "../app/identifiable.model";
 
-export type Style = {
+export interface Style extends Identifiable {
   name: string;
-} & Identifiable;
+}
 
 export const defaultStyle = {
   id: 0,

@@ -1,5 +1,5 @@
 import { Service } from "./service.model";
 
-export type ServiceView = {
+export interface ServiceView extends Service {
   service_type: string;
-} & Service;
+}
