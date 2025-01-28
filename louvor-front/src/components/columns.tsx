@@ -22,7 +22,7 @@ function filter<V>(row: Row<V>, id: string, value: string): boolean {
 
 export default function getColumns<
   T extends Identifiable,
-  V extends Identifiable
+  V extends T | Identifiable
 >(
   labelDefinition: LabelDefinition,
   crudService: CrudService<T, V>,

@@ -101,6 +101,21 @@ export default function mockCrudRoute(
       }
 
       const object = JSON.parse(request.requestBody);
+      if (schemaName == "musics") {
+        const genres = schema.db["genres"];
+        const genre = genres.where({ id: object.genre_id })[0];
+        object.genre = genre.name;
+
+        const styles = schema.db["styles"];
+        const style = styles.where({ id: object.style_id })[0];
+        object.style = style.name;
+
+        const interpreters = schema.db["interpreters"];
+        const interpreter = interpreters.where({
+          id: object.interpreter_id,
+        })[0];
+        object.interpreter = interpreter.name;
+      }
       if (schemaName in schema.db) {
         if (object.id == 0) {
           const objects = schema.db[schemaName];

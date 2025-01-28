@@ -83,6 +83,7 @@ export default function HomeDataTable({
     propertyMap,
     false,
     false,
+    () => {},
     notifyDelete
   );
 
@@ -227,6 +228,7 @@ export default function HomeDataTable({
 
   return !isPending ? (
     <DataTable
+      form={form}
       data={servicesMusics}
       columns={columns}
       title={title}

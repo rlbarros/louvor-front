@@ -24,6 +24,12 @@ export const constants = {
                 servicesTypes: 'servicesTypes',
                 services: 'services',
             }
+        },
+        report: {
+            name: 'report',
+            routes: {
+                musicsByGenre: 'musicsByGenre'
+            }
         }
     },
     id: 'id',

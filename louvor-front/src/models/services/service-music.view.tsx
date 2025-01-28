@@ -1,6 +1,7 @@
+import { Identifiable } from "../app/identifiable.model";
 import { ServiceMusic } from "./service-music.model";
 
-export interface ServiceMusicView extends ServiceMusic {
+export interface ServiceMusicView extends ServiceMusic, Identifiable {
   music: string;
   genre: string;
   style: string;

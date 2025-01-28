@@ -70,7 +70,6 @@ export default function Crud<
   useEffect(() => {
     const fetchData = async () => {
       if (!isPending) {
-        console.log("skuipuy");
         return;
       }
       const fetchedRecords = await crudService.list();

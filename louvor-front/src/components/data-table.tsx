@@ -31,7 +31,7 @@ import { PropsWithChildren } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { Identifiable } from "@/models/app/identifiable.model";
 
-interface DataTableProps<T extends Identifiable, V extends Identifiable> {
+interface DataTableProps<T extends Identifiable, V extends T | Identifiable> {
   form: UseFormReturn<T>;
   columns: ColumnDef<V>[];
   data: V[];
@@ -41,7 +41,7 @@ interface DataTableProps<T extends Identifiable, V extends Identifiable> {
   setOpenAddDialog: (value: boolean) => void;
 }
 
-export function DataTable<T extends Identifiable, V extends Identifiable>({
+export function DataTable<T extends Identifiable, V extends T | Identifiable>({
   form,
   columns,
   data,
