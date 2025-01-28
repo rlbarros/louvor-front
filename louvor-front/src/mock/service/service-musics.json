@@ -4,215 +4,263 @@
     "music_id": 1,
     "music": "Vencendo Vem Jesus (525)",
     "interpreter": "Missão Harpa",
+    "interpreter_id": 2,
     "style": "Animada",
     "style_id": 2,
-    "genre": "Rock"
+    "genre": "Rock",
+    "genre_id": 1
   },
   {
     "service_id": 1,
     "music_id": 2,
     "music": "Bondade de Deus",
     "interpreter": "Isaías Saad",
+    "interpreter_id": 3,
     "style": "Adoração",
     "style_id": 1,
-    "genre": "Worship"
+    "genre": "Worship",
+    "genre_id": 2
   },
   {
     "service_id": 1,
     "music_id": 3,
     "music": "Todas as Coisas",
     "interpreter": "Fernandinho",
+    "interpreter_id": 4,
     "style": "Adoração",
     "style_id": 1,
-    "genre": "Worship"
+    "genre": "Worship",
+    "genre_id": 2
   },
   {
     "service_id": 2,
     "music_id": 4,
     "music": "Fico Feliz",
     "interpreter": "Aline Barros",
+    "interpreter_id": 5,
     "style": "Animada",
     "style_id": 2,
-    "genre": "Pop"
+    "genre": "Pop",
+    "genre_id": 5
   },
   {
     "service_id": 2,
     "music_id": 5,
     "music": "Aquele que está Feliz",
     "interpreter": "Corinhos",
+    "interpreter_id": 6,
     "style": "Animada",
     "style_id": 2,
-    "genre": "Pop"
+    "genre": "Pop",
+    "genre_id": 5
   },
   {
     "service_id": 2,
     "music_id": 6,
     "music": "Canção do Céu",
+    "interpreter_id": 7,
     "interpreter": "Gabriela Rocha",
     "style": "Adoração",
     "style_id": 1,
-    "genre": "Worship"
+    "genre": "Worship",
+    "genre_id": 2
   },
   {
     "service_id": 2,
     "music_id": 7,
     "music": "Varão de Branco",
     "interpreter": "Alice Maciel",
+    "interpreter_id": 8,
     "style": "Animada",
     "style_id": 2,
-    "genre": "Corinho de Fogo"
+    "genre": "Corinho de Fogo",
+    "genre_id": 3
   },
   {
     "service_id": 2,
     "music_id": 8,
     "music": "Não perdi o Controle",
     "interpreter": "Samuel Messias",
+    "interpreter_id": 9,
     "style": "Adoração",
     "style_id": 1,
-    "genre": "Gospel"
+    "genre": "Gospel",
+    "genre_id": 7
   },
   {
     "service_id": 2,
     "music_id": 9,
     "music": "O Cântico de Moisés",
     "interpreter": "Giovani Santos",
+    "interpreter_id": 10,
     "style": "Animada",
     "style_id": 2,
-    "genre": "Corinho de Fogo"
+    "genre": "Corinho de Fogo",
+    "genre_id": 3
   },
   {
     "service_id": 3,
     "music_id": 10,
     "music": "A Boa Parte",
     "interpreter": "FHOP",
+    "interpreter_id": 11,
     "style": "Adoração",
     "style_id": 1,
-    "genre": "Worship"
+    "genre": "Worship",
+    "genre_id": 2
   },
   {
     "service_id": 3,
     "music_id": 11,
     "music": "Liberta-me de Mim",
+    "interpreter_id": 13,
     "interpreter": "Luma Elpídio",
     "style": "Adoração",
     "style_id": 1,
-    "genre": "Gospel"
+    "genre": "Gospel",
+    "genre_id": 7
   },
   {
     "service_id": 4,
     "music_id": 12,
     "music": "Te Agradeço",
     "interpreter": "service_daynte do Trono",
+    "interpreter_id": 12,
     "style": "Animada",
     "style_id": 2,
-    "genre": "Pop"
+    "genre": "Pop",
+    "genre_id": 5
   },
   {
     "service_id": 4,
     "music_id": 14,
     "music": "Eis que estou a porta",
+    "interpreter_id": 4,
     "interpreter": "Fernandinho",
     "style": "Animada",
     "style_id": 2,
-    "genre": "Pop Rock"
+    "genre": "Pop Rock",
+    "genre_id": 9
   },
   {
     "service_id": 4,
     "music_id": 15,
     "music": "Lugar Secreto",
     "interpreter": "Gabriela Rocha",
+    "interpreter_id": 7,
     "style": "Adoração",
     "style_id": 1,
-    "genre": "Worship"
+    "genre": "Worship",
+    "genre_id": 2
   },
   {
     "service_id": 4,
     "music_id": 16,
     "music": "Sempre foi Deus",
     "interpreter": "Kemilly Santos",
+    "interpreter_id": 15,
     "style": "Adoração",
     "style_id": 1,
-    "genre": "Gospel"
+    "genre": "Gospel",
+    "genre_id": 7
   },
   {
     "service_id": 4,
     "music_id": 17,
     "music": "Aos Pés da Cruz",
     "interpreter": "Kleber Lucas",
+    "interpreter_id": 14,
     "style": "Adoração",
     "style_id": 1,
-    "genre": "Gospel"
+    "genre": "Gospel",
+    "genre_id": 7
   },
   {
     "service_id": 5,
     "music_id": 18,
     "music": "João 20 -+ Aqui Está",
     "interpreter": "Luigi Natalino",
+    "interpreter_id": 16,
     "style": "Adoração",
     "style_id": 1,
-    "genre": "Worship"
+    "genre": "Worship",
+    "genre_id": 2
   },
   {
     "service_id": 5,
     "music_id": 19,
     "music": "Pra Sempre",
     "interpreter": "Fernandinho",
+    "interpreter_id": 4,
     "style": "Adoração",
     "style_id": 1,
-    "genre": "Worship"
+    "genre": "Worship",
+    "genre_id": 2
   },
   {
     "service_id": 5,
     "music_id": 20,
     "music": "Imagem de Deus",
     "interpreter": "Voz da Verdade",
+    "interpreter_id": 17,
     "style": "Adoração",
     "style_id": 1,
-    "genre": "Gospel"
+    "genre": "Gospel",
+    "genre_id": 7
   },
   {
     "service_id": 6,
     "music_id": 21,
     "music": "Senhor dos Exércitos",
     "interpreter": "Isaías Saad",
+    "interpreter_id": 3,
     "style": "Animada",
     "style_id": 2,
-    "genre": "Rock"
+    "genre": "Rock",
+    "genre_id": 1
   },
   {
     "service_id": 6,
     "music_id": 22,
     "music": "Os Guerreiros se Preparam (212)",
+    "interpreter_id": 1,
     "interpreter": "Harpa Cristã",
     "style": "Animada",
     "style_id": 2,
-    "genre": "Marchinha"
+    "genre": "Marchinha",
+    "genre_id": 10
   },
   {
     "service_id": 6,
     "music_id": 23,
     "music": "Os que Confiam",
     "interpreter": "Fernandinho",
+    "interpreter_id": 4,
     "style": "Animada",
     "style_id": 2,
-    "genre": "Rock"
+    "genre": "Rock",
+    "genre_id": 1
   },
   {
     "service_id": 6,
     "music_id": 24,
     "music": "Oferta Agradável a TI",
+    "interpreter_id": 18,
     "interpreter": "Cássiane",
     "style": "Adoração",
     "style_id": 1,
-    "genre": "Gospel"
+    "genre": "Gospel",
+    "genre_id": 7
   },
   {
     "service_id": 6,
     "music_id": 25,
     "music": "Eu Louvarei ao Senhor ",
     "interpreter": "Chagas Sobrinho ",
+    "interpreter_id": 19,
     "style": "Adoração",
     "style_id": 1,
-    "genre": "Clássicos "
+    "genre": "Clássicos",
+    "genre_id": 11
   }
 ]

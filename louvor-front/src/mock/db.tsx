@@ -5,6 +5,7 @@ import seed from "./db-seeder";
 import mockAuth from "./auth/auth.mock";
 import mockMusic from "./music/music.mock";
 import mockService from "./service/service.mock";
+import mockReports from "./report.mock";
 
 if (import.meta.env.VITE_MOCK_API) {
   createServer({
@@ -16,6 +17,7 @@ if (import.meta.env.VITE_MOCK_API) {
       mockAuth(this);
       mockMusic(this);
       mockService(this);
+      mockReports(this);
     },
   });
 }

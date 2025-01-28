@@ -93,7 +93,7 @@ const data = {
   projects: [
     {
       name: "Relatórios",
-      url: "#",
+      url: slash(constants.domains.report.name),
       icon: PieChart,
     },
   ],

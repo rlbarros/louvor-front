@@ -20,6 +20,7 @@ import { Styles } from "@/pages/configuration/styles";
 import Home from "@/pages/home";
 import { Interpreters } from "@/pages/music/interpreters";
 import { Musics } from "@/pages/music/musics";
+import Report from "@/pages/report";
 import ProtectedRoutes from "@/utils/protected.routes";
 import slash from "@/utils/slash";
 
@@ -34,6 +35,8 @@ export default function Page() {
   const genresPath = slash(constants.domains.music.routes.genres);
   const stylesPath = slash(constants.domains.music.routes.styles);
   const serviceTypePath = slash(constants.domains.service.routes.servicesTypes);
+
+  const reportPath = slash(constants.domains.report.name);
 
   const location = window.location;
   const pathName = location.pathname;
@@ -57,6 +60,11 @@ export default function Page() {
   } else if (pathName.endsWith(serviceTypePath)) {
     breadcrumbLink = constants.menus.configuration;
     breadcrumbItem = constants.menus.servicesTypes;
+  }
+
+  if (pathName.endsWith(reportPath)) {
+    breadcrumbLink = constants.menus.reports;
+    breadcrumbItem = constants.menus.reports;
   }
 
   return (
@@ -94,6 +102,8 @@ export default function Page() {
                 <Route element={<Genres />} path={genresPath} />
                 <Route element={<Styles />} path={stylesPath} />
                 <Route element={<ServiceTypes />} path={serviceTypePath} />
+
+                <Route element={<Report />} path={reportPath} />
               </Route>
             </Routes>
           </div>

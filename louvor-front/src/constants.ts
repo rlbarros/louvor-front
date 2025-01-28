@@ -28,7 +28,8 @@ export const constants = {
         report: {
             name: 'report',
             routes: {
-                musicsByGenre: 'musicsByGenre'
+                musicsByGenre: 'musicsByGenre',
+                musicsByInterpreter: 'musicsByInterpreter'
             }
         }
     },
@@ -45,7 +46,8 @@ export const constants = {
         services: 'Cultos',
         genres: 'Gêneros',
         styles: 'Estilos',
-        servicesTypes: 'Tipos de Cultos'
+        servicesTypes: 'Tipos de Cultos',
+        reports: 'Relatórios'
     },
     timeouts: {
         mock: 1500
