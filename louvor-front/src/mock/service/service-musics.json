@@ -262,5 +262,93 @@
     "style_id": 1,
     "genre": "Clássicos",
     "genre_id": 11
+  },
+  {
+    "service_id": 7,
+    "music_id": 30,
+    "music": "Moisés",
+    "interpreter_id": 4,
+    "interpreter": "Fernandinho",
+    "style_id": 2,
+    "style": "Animada",
+    "genre_id": 1,
+    "genre": "Rock"
+  },
+  {
+    "service_id": 7,
+    "music_id": 29,
+    "music": "Nada Pode Calar um Adorador",
+    "interpreter_id": 21,
+    "interpreter": "Eyshila",
+    "style_id": 1,
+    "style": "Adoração",
+    "genre_id": 7,
+    "genre": "Gospel"
+  },
+  {
+    "service_id": 8,
+    "music_id": 26,
+    "music": "Seu Sangue",
+    "interpreter_id": 4,
+    "interpreter": "Fernandinho",
+    "style_id": 2,
+    "style": "Animada",
+    "genre_id": 1,
+    "genre": "Rock"
+  },
+  {
+    "service_id": 8,
+    "music_id": 27,
+    "music": "Louve",
+    "interpreter_id": 20,
+    "interpreter": "Lukas Agostinho",
+    "style_id": 2,
+    "style": "Animada",
+    "genre_id": 5,
+    "genre": "Pop"
+  },
+  {
+    "service_id": 8,
+    "music_id": 32,
+    "music": "Todo Poderoso",
+    "interpreter_id": 8,
+    "interpreter": "Alice Maciel",
+    "style_id": 2,
+    "style": "Animada",
+    "genre_id": 3,
+    "genre": "Corinho de Fogo"
+  },
+  {
+    "service_id": 8,
+    "music_id": 28,
+    "music": "Hino da Vitória",
+    "interpreter_id": 18,
+    "interpreter": "Cássiane",
+    "style_id": 1,
+    "style": "Adoração",
+    "genre_id": 7,
+    "genre": "Gospel"
+  },
+  {
+    "service_id": 8,
+    "music_id": 18,
+    "music": "João 20 -+ Aqui Está",
+    "interpreter_id": 16,
+    "interpreter": "Luigi Natalino",
+    "style_id": 1,
+    "style": "Adoração",
+    "genre_id": 2,
+    "genre": "Worship"
+  },
+  {
+    "service_id": 8,
+    "music_id": 31,
+    "music": "Escudo",
+    "interpreter_id": 17,
+    "interpreter": "Voz da Verdade",
+    "style_id": 1,
+    "style": "Adoração",
+    "genre_id": 7,
+    "genre": "Gospel"
   }
 ]

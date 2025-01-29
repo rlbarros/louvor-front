@@ -248,5 +248,75 @@
     "style": "Adoração",
     "genre_id": 11,
     "genre": "Clássicos"
+  },
+  {
+    "id": 26,
+    "interpreter_id": 4,
+    "interpreter": "Fernandinho",
+    "name": "Seu Sangue",
+    "style_id": 2,
+    "style": "Animada",
+    "genre_id": 1,
+    "genre": "Rock"
+  },
+  {
+    "id": 27,
+    "interpreter_id": 20,
+    "interpreter": "Lukas Agostinho",
+    "name": "Louve",
+    "style_id": 2,
+    "style": "Animada",
+    "genre_id": 5,
+    "genre": "Pop"
+  },
+  {
+    "id": 28,
+    "interpreter_id": 18,
+    "interpreter": "Cássiane",
+    "name": "Hino da Vitória",
+    "style_id": 1,
+    "style": "Adoração",
+    "genre_id": 7,
+    "genre": "Gospel"
+  },
+  {
+    "id": 29,
+    "interpreter_id": 21,
+    "interpreter": "Eyshila",
+    "name": "Nada Pode Calar um Adorador",
+    "style_id": 1,
+    "style": "Adoração",
+    "genre_id": 7,
+    "genre": "Gospel"
+  },
+  {
+    "id": 30,
+    "interpreter_id": 4,
+    "interpreter": "Fernandinho",
+    "name": "Moisés",
+    "style_id": 2,
+    "style": "Animada",
+    "genre_id": 1,
+    "genre": "Rock"
+  },
+  {
+    "id": 31,
+    "interpreter_id": 17,
+    "interpreter": "Voz da Verdade",
+    "name": "Escudo",
+    "style_id": 1,
+    "style": "Adoração",
+    "genre_id": 7,
+    "genre": "Gospel"
+  },
+  {
+    "id": 32,
+    "interpreter_id": 8,
+    "interpreter": "Alice Maciel",
+    "name": "Todo Poderoso",
+    "style_id": 2,
+    "style": "Animada",
+    "genre_id": 3,
+    "genre": "Corinho de Fogo"
   }
 ]
