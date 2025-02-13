@@ -29,7 +29,6 @@ export function DataTableViewOptions<
   T extends Identifiable,
   V extends Identifiable
 >({
-  form,
   table,
   propertyMap,
   setOpenAddDialog,
@@ -39,7 +38,6 @@ export function DataTableViewOptions<
   const { setCrudMode } = crudContextState;
 
   function handleAddClick() {
-    form.reset();
     setCrudMode("save");
     setOpenAddDialog(true);
   }

@@ -11,6 +11,7 @@ import { constants } from "@/constants";
 import { CrudService } from "@/services/crud.service";
 import { LabelDefinition } from "@/models/app/label-definition.model";
 import { isNumber } from "lodash";
+import { ApiResponse } from "@/models/app/api-response.model";
 
 function filter<V>(row: Row<V>, id: string, value: string): boolean {
   const rowValue = row.getValue(id);
@@ -31,7 +32,7 @@ export default function getColumns<
   selectVisible: boolean = false,
   editVisible: boolean,
   handleEdit: (id: number) => void,
-  notifyDelete: (object: T) => void
+  notifyDelete: (object: ApiResponse<T>) => void
 ): ColumnDef<V>[] {
   const columnsDefs: ColumnDef<V>[] = [];
 

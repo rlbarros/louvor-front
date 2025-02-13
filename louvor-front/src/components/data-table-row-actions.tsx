@@ -14,13 +14,14 @@ import { Edit, Ellipsis, Loader2, Trash } from "lucide-react";
 import { CrudService } from "@/services/crud.service";
 import { Identifiable } from "@/models/app/identifiable.model";
 import { useEffect, useState } from "react";
+import { ApiResponse } from "@/models/app/api-response.model";
 
 interface DataTableRowActionsProps<TData, T, V> {
   row: Row<TData>;
   crudService: CrudService<T, V>;
   editVisible: boolean;
   handleEdit: (id: number) => void;
-  notifyDelete: (object: T) => void;
+  notifyDelete: (object: ApiResponse<T>) => void;
 }
 
 export function DataTableRowActions<TData, T, V>({

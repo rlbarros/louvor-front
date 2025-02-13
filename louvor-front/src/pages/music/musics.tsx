@@ -110,13 +110,13 @@ export function Musics() {
   const interpreter = "interpreter";
   const interprete = "intérprete";
   const schema = z.object({
-    style_id: z.string({
+    style_id: z.any({
       required_error: `o ${estilo} deve ser preenchdo`,
     }),
-    genre_id: z.string({
+    genre_id: z.any({
       required_error: `o ${genero} deve ser preenchdo`,
     }),
-    interpreter_id: z.string({
+    interpreter_id: z.any({
       required_error: `o ${interprete} deve ser preenchdo`,
     }),
 

@@ -3,6 +3,7 @@ import { constants } from "../../constants";
 import { EncodeResult } from "../../models/auth/encode-result.model";
 import { Login } from "../../models/auth/login.model";
 import { BaseService } from "../base.service";
+import { ApiResponse } from "@/models/app/api-response.model";
 
 export class AuthService extends BaseService {
   authDomain = constants.domains.auth;
@@ -13,14 +14,19 @@ export class AuthService extends BaseService {
 
   readonly authKey = this.domain();
 
-  public async login(login: Login): Promise<EncodeResult> {
+  public async login(login: Login): Promise<ApiResponse<EncodeResult>> {
     const loginPath = `${super.apiPath()}/login`;
     const encodeReslt = await fetch(loginPath, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
       body: JSON.stringify(login),
     }).then(async (r) => {
       const json = await r.json();
-      localStorage.setItem(this.authKey, JSON.stringify(json));
+      const content = json.content;
+      localStorage.setItem(this.authKey, JSON.stringify(content));
       return json;
     });
     return encodeReslt;
@@ -32,7 +38,7 @@ export class AuthService extends BaseService {
 
   private encodedResult() {
     const auth = localStorage.getItem(this.authKey);
-    if (!auth) {
+    if (!auth || auth == "undefined") {
       return {
         success: false,
       } as EncodeResult;

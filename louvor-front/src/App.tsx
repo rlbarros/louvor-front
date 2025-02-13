@@ -1,5 +1,5 @@
 import "./App.css";
-import "./mock/db";
+//import "./mock/db";
 import { LoginForm } from "./login-form";
 import { constants } from "./constants";
 import { BrowserRouter, Route, Routes } from "react-router-dom";

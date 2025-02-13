@@ -208,7 +208,23 @@ export default function HomeHeader({
                             field.onChange(newValue);
                             if (newValue) {
                               form.setValue("day", newValue);
+                              const service = services.find(
+                                (item) =>
+                                  new Date(item.day).toISOString() ==
+                                  newValue.toISOString()
+                              );
+                              if (service) {
+                                form.setValue("id", service.id);
+                                form.setValue(
+                                  "service_type_id",
+                                  service.service_type_id
+                                );
+                              } else {
+                                form.setValue("id", 0);
+                                form.setValue("service_type_id", 1);
+                              }
                             }
+
                             setOpen(false);
                           }}
                           disabled={(date) => date < new Date("1900-01-01")}

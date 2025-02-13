@@ -10,11 +10,13 @@ import { FadeLoader } from "react-spinners";
 import HomeDataTable from "@/components/home-data-table";
 import { ServiceTypeService } from "@/services/service/service-type.service";
 import { ServiceType } from "@/models/services/service-type.model";
-import _ from "lodash";
+import { AuthContext } from "@/utils/contexts";
+import React from "react";
 
 const serviceSchema = z.object({
   day: z.date(),
   service_type_id: z.any(),
+  ministry_id: z.any(),
 });
 
 const serviceService = new ServiceService();
@@ -25,46 +27,11 @@ export default function Home() {
   const [servicesTypes, setServicesTypes] = useState<ServiceType[]>([]);
   const [isPending, setIsPending] = useState(true);
   const [suggestId, setSuggestId] = useState(0);
+  const currentUser = React.useContext(AuthContext);
 
   const form = useForm<Service>({
     resolver: zodResolver(serviceSchema),
   });
-
-  const dayWatch = form.watch("day");
-
-  useEffect(() => {
-    const updateForm = _.debounce((day: Date) => {
-      if (!day) {
-        return;
-      }
-      const service = services.find((item) => {
-        if (typeof item.day == "string") {
-          if (typeof day == "string") {
-            return item.day == day;
-          } else {
-            return item.day == new Date(day).toISOString();
-          }
-        }
-        return item.day.toISOString() == day.toISOString();
-      });
-      if (service) {
-        const formValues = form.getValues();
-        if (formValues && formValues.id != service.id) {
-          form.setValue("id", service.id);
-          form.setValue("service_type_id", service.service_type_id);
-        }
-      } else {
-        form.setValue("id", 0);
-        if (servicesTypes && servicesTypes.length > 0) {
-          form.setValue("service_type_id", servicesTypes[0].id);
-        }
-      }
-    }, 300);
-
-    if (dayWatch) {
-      updateForm(dayWatch);
-    }
-  }, [dayWatch, services, servicesTypes, form]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -86,6 +53,7 @@ export default function Home() {
           form.setValue("id", lastService.id);
           form.setValue("day", new Date(lastService.day));
           form.setValue("service_type_id", lastService.service_type_id);
+          form.setValue("ministry_id", currentUser.ministry_id);
 
           setIsPending(false);
         } else {
@@ -95,7 +63,7 @@ export default function Home() {
     };
 
     fetchData();
-  }, [form]);
+  }, [form, currentUser]);
 
   function inferMusics(id: number) {
     setSuggestId(id);

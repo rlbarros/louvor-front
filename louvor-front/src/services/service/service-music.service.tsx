@@ -1,3 +1,4 @@
+import { ApiResponse } from "@/models/app/api-response.model";
 import { constants } from "../../constants";
 
 import { CrudService } from "../crud.service";
@@ -22,6 +23,9 @@ export class ServiceMusicService extends CrudService<
     const options = this.options("PUT");
     const path = this.pathQuery(queryParams);
 
-    return await fetch(path, options).then((r) => r.json());
+    const apiResponse = (await fetch(path, options).then((r) =>
+      r.json()
+    )) as ApiResponse<ServiceMusicView[]>;
+    return apiResponse.content;
   }
 }

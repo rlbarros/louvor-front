@@ -31,6 +31,7 @@ import { DialogDescription, DialogTitle } from "./ui/dialog";
 import { MusicService } from "@/services/music/music.service";
 import { Badge } from "./ui/badge";
 import { ServiceService } from "@/services/service/service.service";
+import { ApiResponse } from "@/models/app/api-response.model";
 
 interface HomeDataTableProps {
   form: UseFormReturn<Service>;
@@ -69,11 +70,20 @@ export default function HomeDataTable({
     labelColumnValue: "style_id",
   } as LabelDefinition;
 
-  function notifyDelete(object: ServiceMusic) {
-    form.setValue("id", 0);
-    setTimeout(() => {
-      form.setValue("id", object.service_id);
-    }, 50);
+  function notifyDelete(object: ApiResponse<ServiceMusic>) {
+    const serviceMusicIndex = servicesMusics.findIndex(
+      (item) => item.id == object.content.id
+    );
+
+    if (serviceMusicIndex >= 0) {
+      servicesMusics.splice(serviceMusicIndex, 1);
+      setServicesMusics([]);
+      setIsPending(true);
+      setTimeout(() => {
+        setServicesMusics(servicesMusics);
+        setIsPending(false);
+      }, 300);
+    }
   }
 
   const columns = getColumns<ServiceMusic, ServiceMusicView>(
@@ -87,44 +97,40 @@ export default function HomeDataTable({
     notifyDelete
   );
 
-  const idWatch = form.watch("id");
+  const dayWatch = form.watch("day");
 
   const title = "Músicas dos Cultos";
 
   useEffect(() => {
-    const updateMusicServices = _.debounce(async (id: number) => {
-      await fetchData(id);
+    const updateMusicServices = _.debounce(async (day: Date) => {
+      await fetchData(day);
     });
 
-    const fetchData = async (id: number) => {
-      if (id == 0) {
-        setServicesMusics([]);
-        return;
-      }
+    const fetchData = async (day: Date) => {
+      const service = services.find(
+        (item) => new Date(item.day).toISOString() == day.toISOString()
+      );
 
       setIsPending(true);
-      const queryParams = {
-        service_id: `${id}`,
-      } as Record<string, string>;
+      if (service) {
+        const queryParams = {
+          service_id: `${service.id}`,
+        } as Record<string, string>;
 
-      const fetchedServiceMusics = await serviceMusicService.list(queryParams);
-      setIsPending(false);
-      setServicesMusics(fetchedServiceMusics);
+        const fetchedServiceMusics = await serviceMusicService.list(
+          queryParams
+        );
+        setServicesMusics(fetchedServiceMusics);
+        setIsPending(false);
+      } else {
+        await setServicesMusics([]);
+        setTimeout(() => {
+          setIsPending(false);
+        }, 300);
+      }
     };
-
-    if (idWatch) {
-      updateMusicServices(idWatch);
-      return;
-    }
-
-    const values = form.getValues();
-    let id = 0;
-    if (values) {
-      id = values.id;
-    }
-
-    fetchData(id);
-  }, [idWatch, form]);
+    updateMusicServices(dayWatch);
+  }, [dayWatch, services]);
 
   useEffect(() => {
     const fetchData = async (id: number) => {
@@ -149,10 +155,10 @@ export default function HomeDataTable({
       }, 50);
     };
 
-    if (suggestId > 0) {
+    if (suggestId > 0 && !isPending) {
       fetchData(suggestId);
     }
-  }, [suggestId, setSuggestId, form]);
+  }, [suggestId, setSuggestId, form, isPending]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -197,30 +203,34 @@ export default function HomeDataTable({
       return;
     }
 
-    let serviceId = idWatch;
+    let serviceId = form.getValues().id;
     if (serviceId == 0) {
       const values = form.getValues();
       if (!values) {
         return;
       }
-      const newService = await serviceService.save(values);
+      const newService = (await serviceService.save(values)).content;
       serviceId = newService.id;
       services.push(newService);
       setServices(services);
     }
 
-    const { interpreter, genre, style } = music;
+    const { interpreter, genre, style, name } = music;
     const serviceMusic = {
       id: 0,
       service_id: serviceId,
       music_id: music.id,
-      music: music.name,
-      interpreter,
-      genre,
-      style,
     } as ServiceMusic;
-    const newServiceMusic = await serviceMusicService.save(serviceMusic);
-    servicesMusics.push(newServiceMusic as ServiceMusicView);
+    const newServiceMusic = (await serviceMusicService.save(serviceMusic))
+      .content;
+    const newServiceMusicView = {
+      ...newServiceMusic,
+      genre,
+      interpreter,
+      style,
+      music: name,
+    } as ServiceMusicView;
+    servicesMusics.push(newServiceMusicView);
     setServicesMusics(servicesMusics);
     setIsPending(false);
     form.setValue("id", serviceId);

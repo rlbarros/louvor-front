@@ -19,6 +19,7 @@ import { getDialogTitle } from "@/utils/crud.util";
 import { Path, PathValue, UseFormReturn } from "react-hook-form";
 import { Button } from "./ui/button";
 import { Form } from "./ui/form";
+import { ApiResponse } from "@/models/app/api-response.model";
 
 export interface CrudInputs<
   T extends Identifiable,
@@ -81,12 +82,12 @@ export default function Crud<
     fetchData();
   }, [crudService, isPending]);
 
-  async function notifyDelete(object: T) {
+  async function notifyDelete(object: ApiResponse<T>) {
     toast({
-      title: "registro excluído",
-      description: `${singularTitle} ${object.id} excluído`,
+      title: "notificaçãu",
+      description: object.message,
     });
-    setRecords(records.filter((i) => i.id != object.id));
+    setRecords(records.filter((i) => i.id != object.content.id));
   }
 
   const columns = getColumns<T, V>(
@@ -127,15 +128,13 @@ export default function Crud<
   }
 
   async function saveData(data: T) {
-    const newObject = await crudService.save(data);
+    const apiResponse = await crudService.save(data);
     setOpenAddDialog(false);
     toast({
-      title: "You submitted the following values:",
+      title: "notificação",
       description: (
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">
-            {JSON.stringify(newObject, null, 2)}
-          </code>
+          <code className="text-white">{apiResponse.message}</code>
         </pre>
       ),
     });

@@ -1,3 +1,4 @@
+import { ApiResponse } from "@/models/app/api-response.model";
 import { AuthService } from "./auth/auth.service";
 import { BaseService } from "./base.service";
 
@@ -13,8 +14,9 @@ export abstract class ListService<V> extends BaseService {
 
   headers(token: string) {
     const headers = new Headers({
-      Authorization: "Beader " + token,
+      Authorization: "Bearer " + token,
       "Content-Type": "application/json",
+      Accept: "application/json",
     });
     return headers;
   }
@@ -58,6 +60,9 @@ export abstract class ListService<V> extends BaseService {
   async list(queryParams: Record<string, string> = {}): Promise<V[]> {
     const options = this.options("GET");
     const path = this.pathQuery(queryParams);
-    return await fetch(path, options).then((r) => r.json());
+    const apiResponse = (await fetch(path, options).then((r) =>
+      r.json()
+    )) as ApiResponse<V[]>;
+    return apiResponse.content;
   }
 }

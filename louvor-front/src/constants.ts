@@ -20,8 +20,8 @@ export const constants = {
         service: {
             name: 'service',
             routes: {
-                servicesMusics: 'servicesMusics',
-                servicesTypes: 'servicesTypes',
+                servicesMusics: 'service_musics',
+                servicesTypes: 'service_types',
                 services: 'services',
             }
         },

@@ -1,3 +1,4 @@
+import { ApiResponse } from "@/models/app/api-response.model";
 import { ListService } from "./list.service";
 
 export abstract class CrudService<T, V> extends ListService<V> {
@@ -14,18 +15,27 @@ export abstract class CrudService<T, V> extends ListService<V> {
     return `${super.apiPath()}/${id}`;
   }
 
-  public async save(record: T): Promise<T> {
+  public async save(record: T): Promise<ApiResponse<T>> {
     const options = this.crudOptions("POST", record);
-    return await fetch(this.apiPath(), options).then((r) => r.json());
+    const apiReponse = (await fetch(this.apiPath(), options).then((r) =>
+      r.json()
+    )) as ApiResponse<T>;
+    return apiReponse;
   }
 
   public async id(id: number): Promise<T> {
     const options = super.options("GET");
-    return await fetch(this.apiIdPath(id), options).then((r) => r.json());
+    const apiResponse = (await fetch(this.apiIdPath(id), options).then((r) =>
+      r.json()
+    )) as ApiResponse<T>;
+    return apiResponse.content;
   }
 
-  public async delete(id: number): Promise<T> {
+  public async delete(id: number): Promise<ApiResponse<T>> {
     const options = super.options("DELETE");
-    return await fetch(this.apiIdPath(id), options).then((r) => r.json());
+    const apiResponse = (await fetch(this.apiIdPath(id), options).then((r) =>
+      r.json()
+    )) as ApiResponse<T>;
+    return apiResponse;
   }
 }
