@@ -32,7 +32,7 @@ export function Interpreters() {
 
   const pluralTitle = constants.menus.interpreters;
   const singularTitle = singularFromPlural(pluralTitle);
-  const description = "Cantoures ou Bandas que louvam as músicas";
+  const description = "Cantores ou Bandas que louvam as músicas";
 
   return (
     <Crud

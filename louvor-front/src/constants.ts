@@ -41,7 +41,7 @@ export const constants = {
     menus: {
         schedule: 'Agenda',
         musics: 'Musicas',
-        interpreters: "Intépretes",
+        interpreters: "Intérpretes",
         configuration: 'Configuração',
         services: 'Cultos',
         genres: 'Gêneros',
