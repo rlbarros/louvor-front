@@ -1,0 +1,43 @@
+name: Buildar e Copiar Para Outra Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        uses: borales/actions-yarn@v4
+        with:
+          dir: ieabrasil-app
+          cmd: install # will run `yarn install` command
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # if needed
+
+      - name: Build
+        uses: borales/actions-yarn@v4
+        with:
+          dir: louvor-front
+          cmd: build:prod # will run `yarn build:prod` command
+
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: "./louvor-front/dist"
+          destination-github-username: "rlbarros"
+          destination-repository-name: "louvor"
+          user-email: rlbarros@outlook.com
+          target-branch: main
