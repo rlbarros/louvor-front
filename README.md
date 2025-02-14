@@ -1,2 +1,2 @@
 # louvor-front
-React App Para Ap´licação de Louvor
+React App Para Aplicação de Louvor
