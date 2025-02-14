@@ -75,7 +75,8 @@ export default function HomeHeader({
       isNew = true;
       data.id = 0;
     }
-    const newRecord = await serviceService.save(data);
+    const apiResponse = await serviceService.save(data);
+    const newRecord = apiResponse.content;
     if (isNew) {
       services.push(newRecord);
     } else {
