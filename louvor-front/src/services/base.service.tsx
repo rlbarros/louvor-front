@@ -1,7 +1,7 @@
 import { constants } from "../constants";
 
 export abstract class BaseService {
-  ApiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+  ApiBaseUrl = "https://louvor-api.ieabrasil.org.br"; //import.meta.env.VITE_API_BASE_URL;
 
   abstract domain(): string;
 
