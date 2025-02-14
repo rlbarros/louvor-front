@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         uses: borales/actions-yarn@v4
         with:
-          dir: ieabrasil-app
+          dir: louvor-front
           cmd: install # will run `yarn install` command
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # if needed
